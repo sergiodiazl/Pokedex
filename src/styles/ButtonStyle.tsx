@@ -18,13 +18,16 @@ const ButtonStyle=styled.button <{disabled?:boolean}>`
     background-position:0% 50%;
     transition: 0.5s all  ;
 }
+:focus{
+  outline:none;
+  text-decoration:underline;
+}
+
   `
 export const ThemeToggleButtonStyle=styled(ButtonStyle)`
    
     height:2.5rem;
    
-    color: ${({ theme }) => theme.colors.secondary};
-    
     
     flex-grow:1;
     overflow: hidden;
@@ -55,13 +58,11 @@ export const ThemeToggleButtonStyle=styled(ButtonStyle)`
 
 `
 export const NavigationButtonStyle=styled(ButtonStyle)`
-color: ${({ theme }) => theme.colors.secondary};
+color: ${({ theme }) => theme.colors.main};
 border-radius:50%;
+height:30px;
 
-:hover {
-  cursor:pointer;
 
-}
 :disabled{
   background:grey;
   pointer-events:none
@@ -69,8 +70,9 @@ border-radius:50%;
 `
 export const RandomButtonStyle=styled(ButtonStyle)`
 width:100%;
+color: ${({ theme }) => theme.colors.main};
 background: linear-gradient(337deg, rgba(201,48,223,1) 0%, rgba(79,11,56,1) 20%, rgba(216,15,255,1) 52%, rgba(108,14,14,1) 86%);
-color: ${({ theme }) => theme.colors.secondary};
+
 
 &:hover>* {
     background-position:0% 50%;
@@ -81,8 +83,7 @@ export const LanguageButtonStyle=styled(ButtonStyle)`
 flex: 1 1 0px;
 font-size:8px;
 height:2.5rem;
-color: ${({ theme }) => theme.colors.secondary};
-
+color: ${({ theme }) => theme.colors.main};
 
 `
 export const LanguageMenuButtonStyle=styled(LanguageButtonStyle)`
@@ -99,7 +100,7 @@ export const SearchButtonStyle=styled.input.attrs({
 width:100%;
 font-family: 'pressStart','jackey',BlinkMacSystemFont,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
    
-color: ${({ theme }) => theme.colors.secondary};
+color: ${({ theme }) => theme.colors.main};
 border-radius:3px;
 border:none;
 background: ${({ theme }) => theme.gradient};

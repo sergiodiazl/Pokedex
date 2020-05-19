@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import FlexStyle, { ColumnFlexStyle } from './FlexStyle'
+import { ColumnFlexStyle } from './FlexStyle'
 
 export const LayoutBlockStyle=styled.div`
     background: ${({ theme }) => theme.colors.layoutBlock};

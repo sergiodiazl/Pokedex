@@ -7,7 +7,7 @@ import { localizeApiresponse } from '../../locale/localizeApiTexts';
 import FlexStyle from '../../styles/FlexStyle';
 import PokemonInfoStyle from '../../styles/PokemonInfoStyle';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
-
+import {FadeAnimation} from'../../styles/Animations'
 interface Props {}
 interface StatProps {
   locale: string;
@@ -28,11 +28,14 @@ const Stat = (props: StatProps) => {
     fetchStatDetails();
   }, [url, locale]);
   return (
+    <FadeAnimation direction='top' triggerOnce>
     <FlexStyle flexMinWidth='30%'>
-      <div>
-      {localName}:{base_stat}
+    
+      <div> {localName}:{base_stat}
       </div>
     </FlexStyle>
+    
+    </FadeAnimation>
   );
 };
 const Stats = (props: Props) => {
@@ -46,14 +49,16 @@ const Stats = (props: Props) => {
               const { locale } = context!;
               const { statTitle } = localizeAppTexts(locale);
               return (
+                <FadeAnimation direction='top' triggerOnce>
                 <PokemonInfoStyle as="section">
-                  <h2>{statTitle}</h2>
+                <h2>{statTitle}</h2>
                   <FlexStyle flexWidth='100%' justifyContent='space-around'>
                     {stats!.map((s) => (
                       <Stat key={s.stat.name} info={s} locale={locale!} />
                     ))}
                   </FlexStyle>
                 </PokemonInfoStyle>
+                </FadeAnimation>
               );
             }}
           </AppContextConsumer>

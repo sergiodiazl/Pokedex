@@ -9,7 +9,15 @@ export const GridStyle=styled.div<{gridWidth?:string,gtColumn?:string ,gtRow?:st
         grid-gap:3px;
         align-items: center;
   justify-items: center; 
-
+  @media (min-width: 400px) {
+    grid-template-columns:repeat(auto-fill,minmax(130px, 1fr));
+   }
+   @media (min-width: 700px) {
+    grid-template-columns:repeat(auto-fill,minmax(170px, 1fr));
+   }
+   @media (min-width: 1000px) {
+    grid-template-columns:repeat(auto-fill,minmax(280px, 1fr));
+   }
 `
 
 export const OuterGrid=styled(GridStyle)`

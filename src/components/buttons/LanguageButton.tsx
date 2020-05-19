@@ -2,7 +2,6 @@ import React from 'react';
 import FlexStyle from '../../styles/FlexStyle';
 import { AppContextConsumer } from '../../appContext';
 import { LanguageButtonStyle, } from '../../styles/ButtonStyle';
-
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 

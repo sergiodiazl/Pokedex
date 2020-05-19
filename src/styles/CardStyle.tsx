@@ -22,7 +22,7 @@ const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyf
      }
      &:hover img{
    
-    animation:${(props)=>props.hoverAnimation!==undefined?css`${props.hoverAnimation} 2s linear infinite`:'none'};
+    animation:${(props)=>props.hoverAnimation!==undefined?css`${props.hoverAnimation} 0.5s linear infinite`:'none'};
      }
   
    

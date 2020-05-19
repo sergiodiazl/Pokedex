@@ -101,12 +101,14 @@ const SuccessFulPreviewCard=(props:CardProps)=>{
   )
 }
 const LoadingPreviewCard=()=>(
-  <CardStyle   flexWidth='80px' flexHeight='50%'
+  <CardStyle  
+  flexWidth='80px' flexHeight='170px'
   mediaWs='5rem' mediaHs='10rem'
-  mediaWm='7rem' mediaHm='10rem'
-  mediaWl='10rem' mediaHl='11rem'
-  mediaWxl='25rem' mediaHxl='20rem'
-  fontSize='6px'>
+  mediaWm='7rem' mediaHm='12rem'
+  mediaWl='10rem' mediaHl='15rem'
+  mediaWxl='20rem' mediaHxl='28rem'
+  fontSize='6.5px' fontSm='9px'
+  fontSl='12px' fontSxl='20px'>
               
   <ColumnFlexStyle >
 Loading
@@ -115,12 +117,13 @@ Loading
 </CardStyle>
 )
 const ErrorPreviewCard=()=>(
-  <CardStyle   flexWidth='80px' flexHeight='50%'
+  <CardStyle      flexWidth='80px' flexHeight='170px'
   mediaWs='5rem' mediaHs='10rem'
-  mediaWm='7rem' mediaHm='10rem'
-  mediaWl='10rem' mediaHl='11rem'
-  mediaWxl='25rem' mediaHxl='20rem'
-  fontSize='6px'>
+  mediaWm='7rem' mediaHm='12rem'
+  mediaWl='10rem' mediaHl='15rem'
+  mediaWxl='20rem' mediaHxl='28rem'
+  fontSize='6.5px' fontSm='9px'
+  fontSl='12px' fontSxl='20px'>
               
   <ColumnFlexStyle >
  Preview error

@@ -15,17 +15,16 @@ interface Props {
 const SearchButton = (props: Props) => {
     const[searchNumber,setSearchNumber]=useState('')
     const [searchReady,setSearchReady]=useState(false)
-
+    console.log('render start form')
     const handleChange=(event:FormEvent<HTMLInputElement>)=>{
       const newNumber=event.currentTarget.value
-      console.log(newNumber,searchNumber,searchNumber==='')
       setSearchNumber(newNumber)
     }
     const search=(event:FormEvent)=>{
-        event.preventDefault()
+      
         
-        console.log('buscar',searchNumber)
        setSearchReady(true)
+       event.preventDefault()
     }
     
     return (

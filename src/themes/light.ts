@@ -13,6 +13,7 @@ export const lightTheme = {
       layoutBlock:'#BFEFFF',
       mainShadow:'#363537',
       secondaryShadow: '#e8dddd',
+      typedItemShadow:'#0c022b',
       navButton:'#4584d2',
       navButtonDisabled:'#e8dddd',
       backButton:'#e8dddd',

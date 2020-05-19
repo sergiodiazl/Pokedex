@@ -32,23 +32,26 @@ export const PokemonInfoStyle=styled(FlexStyle)`
   hyphens: auto;
     }
     @media (min-width: 400px) {
-    
+      font-size:12px;
         & >h2{
         
    
    } 
   }
   @media (min-width: 700px) {
+    font-size:15px;
     & >h2{
   
    } 
   }
   @media (min-width: 1000px) {
+    font-size:18px;
     & >h2{
    
    } 
   }
   @media (min-width: 2000px) {
+    font-size:25px;
     & >h2{
 
    } 

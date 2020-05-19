@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PokemonPreview from '../pokemonPreview';
 import Loading from '../loading';
 import axios from 'axios';
-import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle';
+import FlexStyle from '../../styles/FlexStyle';
 import { AppContextConsumer } from '../../appContext';
 
 interface Props {

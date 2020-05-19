@@ -9,6 +9,7 @@ import { useState } from 'react'
 import PokemonInfoStyle from '../../styles/PokemonInfoStyle'
 import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle'
 import { localizeAppTexts } from '../../locale/localizeAppTexts'
+import{Fade} from 'react-awesome-reveal'
 interface Props {
     
 }
@@ -35,12 +36,12 @@ const Ability =(props:AbilityProps)=>{
     }, [url,locale])
     return(
         <ColumnFlexStyle flexWidth='100%'alignItems='flex-start'>
-            
+              <Fade direction='top' triggerOnce>
             <h3>{localName} {is_hidden?`★`:null}</h3>
             <p>
             {localFlavorText}
             </p>
-            
+            </Fade>
         </ColumnFlexStyle>
     )
 }
@@ -60,8 +61,8 @@ const Abilities = (props: Props) => {
                                    <PokemonInfoStyle as='section'>
                                        
                                   
-
-                                   <h2>{abilityTitle}</h2>
+                                     
+                                   <h2>  <Fade direction='top' triggerOnce>{abilityTitle}</Fade></h2>
                                
                                    <FlexStyle justifyContent='space-around'flexWidth='100%'>
                                    

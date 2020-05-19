@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-
+import {Fade,Flip}from'react-awesome-reveal'
 
 export const WalkAnimation=keyframes`
    
@@ -40,7 +40,15 @@ export const ShakeAnimation=keyframes`
         transform:skewX(0deg)
     }
   `
+export const FadeAnimation=styled(Fade)`
+width:100%;
+height:100%;
 
+`
+export const FlipAnimation=styled(Flip)`
+width:100%;
+height:100%;
+` 
 export const PageTransition=styled.div`
 
  .fade-enter {

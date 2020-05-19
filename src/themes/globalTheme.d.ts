@@ -16,6 +16,7 @@ declare module 'styled-components' {
       layoutBlock:string,
       mainShadow:string
       secondaryShadow:string
+      typedItemShadow:string
       navButton:string
       navButtonDisabled:string
       backButton:string

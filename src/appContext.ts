@@ -6,9 +6,9 @@ import * as React from 'react';
 export const initialAppContext = {
   totalPokemon:807,
   lightMode: true,
-    setLightMode: (light:boolean) => { initialAppContext.lightMode= light; console.log(initialAppContext) },
+    setLightMode: (light:boolean) => { initialAppContext.lightMode= light },
     locale: 'es',
-    setLocale: (newLocale: string) => { initialAppContext.locale = newLocale; console.log(initialAppContext) },
+    setLocale: (newLocale: string) => { initialAppContext.locale = newLocale},
 }
 export type AppContextInterface = typeof initialAppContext;
 

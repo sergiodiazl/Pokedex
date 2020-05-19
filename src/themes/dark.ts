@@ -1,3 +1,5 @@
+
+
 export const darkTheme = {
   dark:true,
   toggleBorder: '#6B8096',
@@ -5,13 +7,14 @@ export const darkTheme = {
   
   gradientReverse: 'linear-gradient(to right,#091236, #1E215D)',
     colors:{
-      body:'#363537',
-      card: '#2e7cb3',
+      body:'#000000',
+      card: '#042d4a',
       main: '#FAFAFA',
-      secondary:  '#BBBBBB',
+      secondary:  '#0a0a0a',
       layoutBlock:'#104E8B',
       mainShadow:'#36343c',
       secondaryShadow: '#0c022b',
+      typedItemShadow:'#0c022b',
       navButton:'#1a1961',
       navButtonDisabled:'#e8dddd',
       backButton:'#e8dddd',

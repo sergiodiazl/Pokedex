@@ -1,5 +1,5 @@
 
-import { Localized, LocalTexts } from './../types/toLocalize.d';
+import { LocalTexts } from './../types/toLocalize.d';
 import {getProperty} from '../utils/objectUtils'
 import  es from './es'
 import en from './en'

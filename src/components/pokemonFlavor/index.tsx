@@ -3,7 +3,7 @@ import { PokemonContextConsumer } from '../../contexts/pokemonContext';
 import { localizeApiresponse } from '../../locale/localizeApiTexts';
 import PokemonInfoStyle from '../../styles/PokemonInfoStyle';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
-import FlexStyle from '../../styles/FlexStyle';
+import {FadeAnimation}from'../../styles/Animations'
 
 interface Props {
   locale: string;
@@ -22,14 +22,17 @@ const PokemonFlavor = (props: Props) => {
           'flavor_text'
         );
         return (
-          <PokemonInfoStyle as="section" alignItems='flex-start'> 
+          <FadeAnimation direction='top' cascade triggerOnce>
+         <PokemonInfoStyle as="section" alignItems='flex-start'> 
+         
              <h2>{storyTitle}</h2>
-             
+            
                     
             <p>{localFlavorText}</p>
             
            
           </PokemonInfoStyle>
+          </FadeAnimation>
         );
       }}
     </PokemonContextConsumer>

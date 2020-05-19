@@ -5,6 +5,7 @@ import { localizeAppTexts } from '../../locale/localizeAppTexts'
 import notFoundImg from '../../assets/img/notFound.gif'
 import ResponsiveImg from '../../styles/ResponsiveImg'
 import RandomPokemonButton from '../../components/buttons/RandomPokemonButton'
+import {Fade} from 'react-awesome-reveal'
 interface Props {
     
 }
@@ -12,7 +13,8 @@ interface Props {
 const NotFound = (props: Props) => {
     return (
        
-            <MainContentStyle flexPadding='5%'>
+            <Fade>
+                <MainContentStyle flexPadding='5%'>
             <AppContextConsumer>
              {context=>{
                 const{locale}=context!
@@ -30,6 +32,7 @@ const NotFound = (props: Props) => {
              }}
              </AppContextConsumer>
             </MainContentStyle>
+            </Fade>
       
     )
 }

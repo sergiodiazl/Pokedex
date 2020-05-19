@@ -10,6 +10,7 @@ import FlexStyle, {
   ColumnToRowFlexStyle,
 } from '../../styles/FlexStyle';
 import { WalkAnimation, ShakeAnimation } from '../../styles/Animations';
+import {Fade,Flip} from'react-awesome-reveal'
 import ResponsiveImg from '../../styles/ResponsiveImg';
 interface Props {
   locale: string;
@@ -17,8 +18,10 @@ interface Props {
 
 const PokemonSummary = (props: Props) => {
   const { locale } = props;
-  return (
-    <CardStyle
+  return ( 
+    <>
+
+<CardStyle
       flexWidth="100%"
       mediaWs="100%"
       mediaHs="100%"
@@ -53,8 +56,9 @@ const PokemonSummary = (props: Props) => {
 
           return (
             <ColumnToRowFlexStyle flexWidth="100%" flexHeight='100%'>
-              <FlexStyle flexWidth='50%' >
-                <ResponsiveImg
+              <FlexStyle flexWidth='50%'  >
+               <FlexStyle flexWidth='100%' mediaWl='50%'>
+               <ResponsiveImg
                   imgWidth="100%"
                   src={
                     frontSprite !== null && frontSprite !== undefined
@@ -63,6 +67,7 @@ const PokemonSummary = (props: Props) => {
                   }
                   alt={localName!}
                 />
+               </FlexStyle>
               </FlexStyle>
               <ColumnFlexStyle flexWidth="50%" flexPadding='5%'>
                 <p>
@@ -76,6 +81,9 @@ const PokemonSummary = (props: Props) => {
         }}
       </PokemonContextConsumer>
     </CardStyle>
+  
+    </>
+   
   );
 };
 

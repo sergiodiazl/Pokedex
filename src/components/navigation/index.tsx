@@ -2,7 +2,6 @@ import React from 'react';
 import FlexStyle from '../../styles/FlexStyle';
 import { NavigationButtonStyle } from '../../styles/ButtonStyle';
 import LinkStyle from '../../styles/LinkStyle';
-import RandomPokemonButton from '../buttons/RandomPokemonButton';
 import SearchButton from '../buttons/SearchButton';
 interface Props {
   place: string;
@@ -13,7 +12,6 @@ interface Props {
 const Navigation = (props: Props) => {
   const { current, maxPlace, place } = props;
   const createUrl = (destination: number) => {
-    console.log('current', current, 'destino', destination);
     const newUrl = `${place}${destination}`;
 
     return newUrl;
