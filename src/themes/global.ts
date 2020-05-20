@@ -48,26 +48,6 @@ html{
   }
 
 
-  @media (min-width: 400px) {
-   h1{
-  
-   } 
-  }
-  @media (min-width: 700px) {
-   h1{
-   
-   } 
-  }
-  @media (min-width: 1000px) {
-   h1{
-  
-   } 
-  }
-  @media (min-width: 2000px) {
-   h1{
- 
-   } 
-  }
   @font-face {
         font-family: 'Jackey';
         src: local('jackey'), local('Jackey'),

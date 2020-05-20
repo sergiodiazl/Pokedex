@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy,Suspense,useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PokemonPreviewDetailsInterface } from '../../types/pokemonPreviewDetails';
 import { PokemonFullDetailsInterface } from '../../types/pokemonFullDetails';
@@ -9,19 +9,24 @@ import {
 } from '../../utils/pokemonData';
 
 import { localizeApiresponse } from '../../locale/localizeApiTexts';
-import PokemonSummary from '../pokemonSummary';
-import BattleInfo from '../battleInfo';
+
 import { PokemonContextProvider } from '../../contexts/pokemonContext';
 import { AppContextConsumer } from '../../appContext';
 import { isEmpty } from '../../utils/objectUtils';
-import PokemonFlavor from '../pokemonFlavor';
-
+import Loading from '../loading'
 import { MainContentStyle } from '../../styles/LayoutStyle';
-import Navigation from '../navigation';
-import PokemonFamily from '../pokemonFamily';
-import Abilities from '../abilities';
-import FlexStyle from '../../styles/FlexStyle';
-import {FadeAnimation} from '../../styles/Animations'
+
+import { FadeAnimation } from '../../styles/Animations';
+import { localizeAppTexts } from '../../locale/localizeAppTexts';
+////////////////////////////
+const  Navigation=lazy(()=>import('../navigation'))
+const  FlexStyle=lazy(()=>import('../../styles/FlexStyle'))
+const  PokemonSummary=lazy(()=>import('../pokemonSummary'))
+const  PokemonFlavor=lazy(()=>import('../pokemonFlavor'))
+const  Abilities=lazy(()=>import('../abilities'))
+const  PokemonFamily=lazy(()=>import('../pokemonFamily'))
+const  BattleInfo=lazy(()=>import('../battleInfo'))
+
 interface Props {
   name: string;
 }
@@ -34,14 +39,17 @@ const PokemonInfo = (props: Props) => {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
   //fetch data
-
   useEffect(() => {
     const fetchPreview = async () => {
+      console.log('start fetch preview')
       const previewData = await fetchPokemonPreviewData(name);
+      console.log('finsih start fetch preview')
       setPreview(previewData);
     };
     const fetchDetails = async () => {
+      console.log('start fetch detail')
       const detailsData = await fetchPokemonFullDetails(name);
+      console.log('finsih start fetch details')
       setDetails(detailsData);
     };
     fetchPreview();
@@ -65,42 +73,41 @@ const PokemonInfo = (props: Props) => {
     <MainContentStyle flexWidth="100%" flexPadding="5%">
       {fetchError ? <Redirect to="/notFound" /> : null}
       {loading ? (
-        'loading'
+       <Loading/>
       ) : (
         <>
           <AppContextConsumer>
             {(context) => {
               const { locale, totalPokemon } = context!;
               const localName = localizeApiresponse(names!, locale, 'name');
-
+              const {loadingText}=localizeAppTexts(locale)
+             
+              document.title = loading?loadingText:`#${pokemonId} ${localName}`;
               return (
                 <>
                   {!isEmpty(details) && !isEmpty(preview) ? (
-                    <FadeAnimation direction ='top' cascade>
-                      <Navigation
+                    <FadeAnimation direction="top" cascade>
+                     <Suspense fallback={loading}>
+                     <Navigation
                         current={pokemonId!}
                         place="/pokemon/"
                         maxPlace={totalPokemon}
                       />
-                       
-                       <FlexStyle flexWidth="100%">
+
+                      <FlexStyle flexWidth="100%">
                         <h1>{`#${pokemonId} ${localName}`}</h1>
                       </FlexStyle>
 
                       <PokemonContextProvider value={pokemonContext}>
-                       <FlexStyle flexWidth='100%'>
-                     
-                      <PokemonSummary locale={locale} />
-
-                    
-                       </FlexStyle>
+                        <FlexStyle flexWidth="100%">
+                          <PokemonSummary locale={locale} />
+                        </FlexStyle>
                         <PokemonFlavor locale={locale} />
                         <Abilities />
                         <PokemonFamily locale={locale} family={family} />
 
                         <BattleInfo />
 
-                    
                         <PokemonFamily locale={locale} family={family} />
                         <Navigation
                           current={pokemonId!}
@@ -108,9 +115,10 @@ const PokemonInfo = (props: Props) => {
                           maxPlace={totalPokemon}
                         />
                       </PokemonContextProvider>
-                  </FadeAnimation>
+                     </Suspense>
+                    </FadeAnimation>
                   ) : (
-                    'Loading'
+                    <Loading/>
                   )}
                 </>
               );

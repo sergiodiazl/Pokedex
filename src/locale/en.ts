@@ -10,14 +10,15 @@ const en:LocalTexts={
     typesTitle:'Types',
     familyTitle:'Family',
     footerText:'Pokemon is copryrighted by Nintendo.',
-    notFoundTitle:'Search',
+    notFoundTitle:'Search error',
     notFoundText:'What you were searching for could not be found.It may not exist or maybe it was a server error.Meanwhile you can discover a random pokemon',
-    backButton:'Back',
+ 
     searchButton:'Search',
     searchPlaceHolder:'Write a number',
     searchTitle:'Search by number',
     randomButton:'Random',
-    githubText:'Code available in github'
+    githubText:'Code available in github',
+    loadingText:'Loading ...'
 
 }
 

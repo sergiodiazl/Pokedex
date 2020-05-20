@@ -16,20 +16,25 @@ interface Props {
 const DarkModebutton = (props: Props) => {
       
     const[storedLightMode,setStoredLightMode]=useLocalStorage('lightMode',true)
-    const toggleLightMode=(context:AppContextInterface)=>{
-      
-        context!.setLightMode(!storedLightMode)
-        setStoredLightMode(!storedLightMode)  
-    }
-
+   
+    
     return (
         <AppContextConsumer>
         {context=>{
             const {locale,lightMode}=context!
                         
             const {darkModeText,lightModeText}=localizeAppTexts(locale!)
-           
-            return ( <ThemeToggleButtonStyle  onClick={()=>toggleLightMode(context!)}>
+            const toggleLightMode=(context:AppContextInterface)=>{
+      
+                context!.setLightMode(!storedLightMode)
+                setStoredLightMode(!storedLightMode)  
+            }
+            const handleClick=(event:React.MouseEvent<HTMLButtonElement>)=>{
+                    event.currentTarget.blur()
+                    toggleLightMode(context!)
+
+            }
+    return ( <ThemeToggleButtonStyle  onClick={handleClick}>
                 <ResponsiveImg src={SunIcon} alt='light'/>
         <div>{lightMode?darkModeText:lightModeText}</div>
                 <ResponsiveImg src={MoonIcon} alt='dark'/>

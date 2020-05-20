@@ -19,7 +19,7 @@ const NotFound = (props: Props) => {
              {context=>{
                 const{locale}=context!
                 const {notFoundTitle,notFoundText}=localizeAppTexts(locale)
-            
+                document.title=notFoundTitle
                  return(<>
                  <h1>{notFoundTitle}</h1>
                  <ResponsiveImg imgWidth='40%' src={notFoundImg} alt={notFoundTitle}>

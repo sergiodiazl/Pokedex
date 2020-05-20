@@ -12,13 +12,14 @@ const es:LocalTexts={
     footerText:'Pokémon es marca registrada de Nintendo.',
     notFoundTitle:' Error de busqueda',
     notFoundText:'No se pudo encontrar lo que buscabas.Puede que no exista o que sea un error del servidor.Mientras tanto,puedes descubrir un pokemon al azar',
-    backButton:'atras',
+
     searchButton:'Buscar',
     searchPlaceHolder:'Escribe un número',
     searchTitle:'Buscar por número',
     randomButton:'Al azar',
-    githubText:'Código disponible en github'
-
+    githubText:'Código disponible en github',
+    loadingText:'Cargando...'
+   
 }
 
 export default es

@@ -10,7 +10,6 @@ import FlexStyle, {
   ColumnToRowFlexStyle,
 } from '../../styles/FlexStyle';
 import { WalkAnimation, ShakeAnimation } from '../../styles/Animations';
-import {Fade,Flip} from'react-awesome-reveal'
 import ResponsiveImg from '../../styles/ResponsiveImg';
 interface Props {
   locale: string;
@@ -28,10 +27,12 @@ const PokemonSummary = (props: Props) => {
       mediaWm="50%"
       mediaHm="10rem"
       mediaWl="40%"
-      mediaHl="10rem"
+      mediaHl="15rem"
       mediaWxl="25%"
-      mediaHxl="100%"
+      mediaHxl="20rem"
       fontSize="10px"
+ fontSm='9px'
+      fontSl='12px' fontSxl='20px'
       flexPadding='0px'
       mainAnimation={WalkAnimation}
       hoverAnimation={ShakeAnimation}
@@ -57,7 +58,7 @@ const PokemonSummary = (props: Props) => {
           return (
             <ColumnToRowFlexStyle flexWidth="100%" flexHeight='100%'>
               <FlexStyle flexWidth='50%'  >
-               <FlexStyle flexWidth='100%' mediaWl='50%'>
+               <FlexStyle flexWidth='100%'>
                <ResponsiveImg
                   imgWidth="100%"
                   src={
@@ -69,12 +70,17 @@ const PokemonSummary = (props: Props) => {
                 />
                </FlexStyle>
               </FlexStyle>
-              <ColumnFlexStyle flexWidth="50%" flexPadding='5%'>
+              <ColumnFlexStyle flexWidth="50%"  mediaWl='50%'mediaHl='100%' flexPadding='0'>
+                <FlexStyle flexHeight='50%'flexWidth='100%'  flexPadding='5%'>
                 <p>
                   {`#${id} ${localName}`}
                 </p>
-                <p>{localGenus}</p>
-                <PokemonTypes locale={locale} pokemonTypes={pokemonTypes!} />
+                <p> {localGenus}</p>
+                </FlexStyle>
+               <FlexStyle flexHeight='50%' flexWidth='100%' flexPadding='5%'>
+               <PokemonTypes locale={locale} pokemonTypes={pokemonTypes!} />
+               </FlexStyle>
+                
               </ColumnFlexStyle>
             </ColumnToRowFlexStyle>
           );

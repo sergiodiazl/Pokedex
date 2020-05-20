@@ -16,18 +16,21 @@ const Navigation = (props: Props) => {
 
     return newUrl;
   };
+  const handleClick=(event:React.MouseEvent<HTMLButtonElement>)=>{
+      event.currentTarget.blur()
 
+  }
   return (
     <FlexStyle flexPadding="1%" flexWidth="100%">
       <FlexStyle flexWidth="25%" wrapReverse justifyContent='flex-end' >
         {current !== 1 ? (
           <>
             <LinkStyle to={createUrl(1)}>
-              <NavigationButtonStyle>{`<<`}</NavigationButtonStyle>
+              <NavigationButtonStyle onClick={handleClick}>{`<<`}</NavigationButtonStyle>
             </LinkStyle>
 
             <LinkStyle to={createUrl(current - 1)}>
-              <NavigationButtonStyle>{`< `}</NavigationButtonStyle>
+              <NavigationButtonStyle onClick={handleClick}>{`< `}</NavigationButtonStyle>
             </LinkStyle>
           </>
         ) : (
@@ -45,11 +48,11 @@ const Navigation = (props: Props) => {
         {current !== maxPlace ? (
           <>
             <LinkStyle to={createUrl(current + 1)}>
-              <NavigationButtonStyle>{` >`}</NavigationButtonStyle>
+              <NavigationButtonStyle onClick={handleClick}>{` >`}</NavigationButtonStyle>
             </LinkStyle>
 
             <LinkStyle to={createUrl(maxPlace)}>
-              <NavigationButtonStyle>{`>>`}</NavigationButtonStyle>
+              <NavigationButtonStyle onClick={handleClick}>{`>>`}</NavigationButtonStyle>
             </LinkStyle>
           </>
         ) : (

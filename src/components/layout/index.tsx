@@ -39,18 +39,19 @@ const Layout: React.FC<Props> = (props) => {
             <HeaderStyle as="header">
               <FlexStyle
                 flexWidth="100%"
+                flexHeight='100%'
                 alignItems="flex-start"
                 justifyContent="space-between"
               >
-                <FlexStyle flexWidth='100%' mediaWm='25%'>
+                <FlexStyle flexWidth='100%' flexHeight='100%'mediaWm='25%'>
                   <Link to="/">
                     <picture>
-                      <ResponsiveImg imgWidth="70%" src={LogoS} alt="logo" />
+                      <ResponsiveImg imgWidth="100%" src={LogoS} alt="logo" />
                     </picture>
                   </Link>
                 </FlexStyle>
 
-                <FlexStyle  flexMinWidth='70%' justifyContent='flex-end'>
+                <FlexStyle flexWidth='100%' flexHeight='100%' mediaWm='70%' justifyContent='flex-end'>
                         <FlexStyle  flexWidth='100%' mediaWm='60%'mediaWl='40%' mediaWxl='20%'>
                               
                         <LanguageButton />    

@@ -17,7 +17,7 @@ const ja:LocalTexts={
     notFoundTitle:`
     検索エラー`,
     notFoundText:`探しているものが見つかりませんでした。存在しないか、サーバーエラーの可能性があります。一方、ランダムなポケモンを発見できます`,
-    backButton:`atras`,
+
     searchButton:`Buscar`,
     searchPlaceHolder:`
     番号を書く`,
@@ -25,7 +25,8 @@ const ja:LocalTexts={
     randomButton:`
     ランダム`,
     githubText:`
-    githubのコード`
+    githubのコード`,
+    loadingText:`データのロード`
 }
 
 export default ja

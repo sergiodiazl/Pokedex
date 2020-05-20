@@ -25,13 +25,16 @@ interface LocaleOptionProp{
 }
 const LocaleOptionsButton =(props:LocaleOptionProp)=>{
   const{locale,setLocale}=props 
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const[storedLocale,setStoredLocale]=useLocalStorage('locale','en')
-  const handleClick=()=>{
+  const handleClick=(event: React.MouseEvent<HTMLButtonElement>)=>{
     setLocale(locale.value)
     setStoredLocale(locale.value)
+    event.currentTarget.blur()
   }
   return(
-  <LanguageButtonStyle onClick={()=>setLocale(handleClick)}>{locale.name}</LanguageButtonStyle>
+  <LanguageButtonStyle onClick={handleClick}>{locale.name}</LanguageButtonStyle>
   )  
 }
 const LocaleOptionsButtons =(props:LocaleOptionsProps)=>{

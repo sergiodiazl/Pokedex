@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { AppContextConsumer } from '../../appContext'
 
 import LinkStyle from '../../styles/LinkStyle';
@@ -17,6 +17,9 @@ const RandomPokemonButton = (props: Props) => {
         const newUrl= `/pokemon/${randomNumber}`
         return newUrl
     }
+    const handleClick=(e:React.MouseEvent<HTMLButtonElement>)=>{
+     e.currentTarget.blur()
+    }
   
     return (
         <AppContextConsumer>
@@ -25,7 +28,7 @@ const RandomPokemonButton = (props: Props) => {
                 const{randomButton} =localizeAppTexts(locale)
                 return(  
                     <LinkStyle to={randomUrl(totalPokemon)}> 
-                    <RandomButtonStyle type='button'>
+                    <RandomButtonStyle onClick={handleClick}type='button'>
                   
                     <ResponsiveImg imgWidth='20px'src={Ditto} alt={randomButton}/>
                      {randomButton}

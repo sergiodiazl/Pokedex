@@ -31,7 +31,8 @@ const Move = (props: MoveProps) => {
     fetchMoveDetails();
   }, [url, locale]);
   return (
-    <TypedItemStyle
+    <FadeAnimation direction='top' duration={500}triggerOnce>
+      <TypedItemStyle
       name={typeName}
       flexWidth="100%"
       flexHeight='100%'
@@ -40,6 +41,7 @@ const Move = (props: MoveProps) => {
     >
       {localName}
     </TypedItemStyle>
+    </FadeAnimation>
   );
 };
 const Moves = (props: Props) => {
@@ -53,22 +55,26 @@ const Moves = (props: Props) => {
               const { locale } = context!;
               const { movesTitle } = localizeAppTexts(locale);
               return (
-                <FadeAnimation direction="top" cascade triggerOnce >
+                <FadeAnimation direction="top" duration={500} cascade  >
              
               <PokemonInfoStyle as="section">
                      <h2>{movesTitle}</h2>
+                     <FadeAnimation direction="left" duration={500} cascade triggerOnce >
                     <GridStyle gridWidth="100%">
-                      {moves!.map((move) => (
-                      
-                          <Move
-                            key={move!.move!.name}
-                            move={move!.move}
-                            locale={locale!}
-                          />
-                      ))}
+               
+                     {moves!.map((move) => (
+                 
+                      <Move
+                        key={move!.move!.name}
+                        move={move!.move}
+                        locale={locale!}
+                      />
+               
+                  ))}
+              
                     </GridStyle>
                     
-                 
+                    </FadeAnimation>     
                 </PokemonInfoStyle>
                 </FadeAnimation>
               );

@@ -1,6 +1,6 @@
 import styled, { Keyframes, css } from 'styled-components'
 import FlexStyle from'./FlexStyle'
-const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyframes,fontSize?:string,imgBg?:string}>`
+const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyframes,fontSize?:string,imgBg?:string,imgShadow?:boolean}>`
    
     background:${({ theme }) => theme.colors.card};
     padding:${(props)=>props.flexPadding!==undefined?props.flexPadding:'5%'};
@@ -16,6 +16,8 @@ const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyf
  
   & img{
     background:${(props)=>props.imgBg!==undefined?`${props.imgBg}`:'#cc8ea259'};
+   
+  box-shadow:  ${( props ) =>props.imgShadow? `0 4px 8px 0 ${props.theme.colors.mainShadow}`:''};
     border-radius:50%;
     animation:${(props)=>props.mainAnimation!==undefined?css`${props.mainAnimation} 2s linear infinite`:'none'};
     transition:animation 0.5s linear 

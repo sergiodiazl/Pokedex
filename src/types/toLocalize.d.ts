@@ -19,11 +19,12 @@ export interface LocalTexts extends object{
   footerText:string
   notFoundTitle:string
   notFoundText:string
-  backButton:string
-  searchTitle?:string
-  searchPlaceHolder?:string
-  searchButton?:string
-  randomButton?:string
-  githubText?:string
+  
+  searchTitle:string
+  searchPlaceHolder:string
+  searchButton:string
+  randomButton:string
+  githubText:string
+  loadingText:string
 
 }

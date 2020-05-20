@@ -6,7 +6,6 @@ import { AppContextConsumer } from '../../appContext';
 import Navigation from '../../components/navigation';
 
 import { MainContentStyle } from '../../styles/LayoutStyle';
-import {Fade} from 'react-awesome-reveal'
 interface Props {}
 const Main = (props: Props) => {
   const { page: pageParam } = useParams();

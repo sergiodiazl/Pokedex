@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import PokemonPreview from '../pokemonPreview';
+import React, {lazy,Suspense, useEffect, useState } from 'react';
+
 import Loading from '../loading';
 import axios from 'axios';
 import FlexStyle from '../../styles/FlexStyle';
 import { AppContextConsumer } from '../../appContext';
-
+const PokemonPreview=lazy(()=>import('../pokemonPreview'))
 interface Props {
-  page: number
-  maxPokemon:number
+  page: number;
+  maxPokemon: number;
 }
 interface BasicPokemonInfo {
   name: string;
@@ -15,15 +15,17 @@ interface BasicPokemonInfo {
 }
 
 const PokemonList = (props: Props) => {
+  document.title='Pokemon'
   const [pokemonList, setPokemonList] = useState([] as Array<BasicPokemonInfo>);
-  const { page,maxPokemon } = props;
+  const { page, maxPokemon } = props;
   const offset = (page - 1) * 5;
- 
-  const showPokemon=(pokemonId:number)=>{
-    
-      return pokemonId<maxPokemon
-  }
-  const pokemonListFiltered=pokemonList.filter((pokemon,index)=>(showPokemon(offset+index)))
+
+  const showPokemon = (pokemonId: number) => {
+    return pokemonId < maxPokemon;
+  };
+  const pokemonListFiltered = pokemonList.filter((pokemon, index) =>
+    showPokemon(offset + index)
+  );
 
   useEffect(() => {
     const fetchPokemonList = async () => {
@@ -36,29 +38,29 @@ const PokemonList = (props: Props) => {
     fetchPokemonList();
   }, [offset]);
   return (
-    <FlexStyle flexWidth='100%' flexHeight='100%' justifyContent='center'>
-      
-      {pokemonListFiltered.length>0 ? (
-        pokemonListFiltered.map((pokemon,index) => {
-         
-          return(
+    <FlexStyle flexWidth="100%" flexHeight="100%" justifyContent="center">
+      <Suspense fallback={<Loading/>}>
+      {pokemonListFiltered.length > 0 ? (
+        pokemonListFiltered.map((pokemon, index) => {
+          return (
             <AppContextConsumer>
-              {context=>{
-                const{locale}=context!
-                return( <PokemonPreview
-                  locale={locale!}
-                  name={pokemon!.name!}
-                  key={pokemon!.name!}
-                
-                />)
+              {(context) => {
+                const { locale } = context!;
+                return (
+                  <PokemonPreview
+                    locale={locale!}
+                    name={pokemon!.name!}
+                    key={pokemon!.name!}
+                  />
+                );
               }}
             </AppContextConsumer>
-           
-          )
+          );
         })
       ) : (
         <Loading />
       )}
+      </Suspense>
     </FlexStyle>
   );
 };
