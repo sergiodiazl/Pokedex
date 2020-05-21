@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 
 import PokemonList from '../../components/pokemonList';
-import { AppContextConsumer } from '../../appContext';
+import { AppContextConsumer } from '../../contexts/appContext';
 import Navigation from '../../components/navigation';
 
 import { MainContentStyle } from '../../styles/LayoutStyle';

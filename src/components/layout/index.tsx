@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContextConsumer, } from '../../appContext';
+import { AppContextConsumer, } from '../../contexts/appContext';
 
 import LayoutSyle, {
   HeaderStyle,
@@ -22,8 +22,9 @@ import { localizeAppTexts } from '../../locale/localizeAppTexts';
 
 import ResponsiveImg from '../../styles/ResponsiveImg';
 import { ALinkStyle } from '../../styles/LinkStyle';
+import { FadeAnimation } from '../../styles/Animations';
 interface Props {}
-const githubUrl = 'https://github.com/sergiodiazl?tab=repositories';
+const githubUrl = 'https://github.com/sergiodiazl/Pokedex';
 const sergioUrl = 'https://sergiodl.com/';
 const year = new Date().getFullYear();
 
@@ -69,7 +70,9 @@ const Layout: React.FC<Props> = (props) => {
               {props.children}
             </ColumnFlexStyle>
             <FooterStyle as="footer">
+            <FadeAnimation direction ='top'delay={500}cascade triggerOnce>
               <FlexStyle>
+             
               <ALinkStyle href={sergioUrl} >
                   <FlexStyle>
                    
@@ -93,7 +96,9 @@ const Layout: React.FC<Props> = (props) => {
                     />
                   </FlexStyle>
                 </ALinkStyle>
+         
               </FlexStyle>
+              </FadeAnimation>
             </FooterStyle>
           </LayoutSyle>
         );

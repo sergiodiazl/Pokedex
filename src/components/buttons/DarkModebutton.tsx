@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppContextConsumer, AppContextInterface } from '../../appContext'
+import { AppContextConsumer, AppContextInterface } from '../../contexts/appContext'
 import { ThemeToggleButtonStyle } from '../../styles/ButtonStyle'
 
 import SunIcon from '../../assets/img/icons/sun.png'

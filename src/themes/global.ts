@@ -47,7 +47,13 @@ html{
  
   }
 
-
+*{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+}
   @font-face {
         font-family: 'Jackey';
         src: local('jackey'), local('Jackey'),

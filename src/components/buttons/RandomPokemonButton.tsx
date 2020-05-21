@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react'
-import { AppContextConsumer } from '../../appContext'
+import { AppContextConsumer } from '../../contexts/appContext'
 
 import LinkStyle from '../../styles/LinkStyle';
 import { RandomButtonStyle } from '../../styles/ButtonStyle';

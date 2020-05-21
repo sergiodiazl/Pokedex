@@ -1,6 +1,6 @@
 import React from 'react'
 import { MainContentStyle } from '../../styles/LayoutStyle'
-import { AppContextConsumer } from '../../appContext'
+import { AppContextConsumer } from '../../contexts/appContext'
 import { localizeAppTexts } from '../../locale/localizeAppTexts'
 import notFoundImg from '../../assets/img/notFound.gif'
 import ResponsiveImg from '../../styles/ResponsiveImg'

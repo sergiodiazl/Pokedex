@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle';
+import { v4 as uuid } from 'uuid';
+import FlexStyle from '../../styles/FlexStyle';
 import PokemonInfoStyle from '../../styles/PokemonInfoStyle';
 import { fetchDetail } from '../../utils/pokemonData';
 import { EvolutionChain, NamedEntity } from '../../types/pokemonFullDetails';
@@ -10,7 +11,7 @@ import {
 } from '../../types/evolutionDetails';
 import PokemonPreview from '../pokemonPreview';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
-import {FadeAnimation,FlipAnimation} from '../../styles/Animations'
+import { FlipAnimation, FadeAnimation } from '../../styles/Animations';
 interface Props {
   locale: string;
   family: EvolutionChain;
@@ -19,29 +20,33 @@ interface Props {
 const PokemonFamily = (props: Props) => {
   const { family, locale } = props;
   const { url } = family;
-  const{ familyTitle}=localizeAppTexts(locale)
+  const { familyTitle } = localizeAppTexts(locale);
   const [familyDetails, setfamilyDetails] = useState({} as EvolutionDetails);
   const { chain } = familyDetails;
   const [familyMembers, setFamilyMembers] = useState([] as NamedEntity[]);
+  const PreviewArrayId: string = uuid();
   useEffect(() => {
+    let isMounted = true;
     const fetchFamilyDetails = async () => {
       const fd = await fetchDetail(url);
-  
-      setfamilyDetails(fd);
+      if (isMounted) {
+        setfamilyDetails(fd);
+      }
     };
     fetchFamilyDetails();
+    return () => {
+      isMounted = false;
+    };
   }, [url]);
 
-
   useEffect(() => {
-
     const traverseFamilyTree = (
       evolutionArray: EvolvesToEntity[],
       memberArray: NamedEntity[]
     ) => {
       for (let evolution of evolutionArray) {
         memberArray.push(evolution.species);
-  
+
         if (evolutionArray.length > 0) {
           traverseFamilyTree(
             evolution!.evolves_to! as EvolvesToEntity[],
@@ -62,35 +67,25 @@ const PokemonFamily = (props: Props) => {
     familyTree(chain!);
   }, [chain]);
   return (
-    <FadeAnimation direction='top' triggerOnce >
-    
-   <PokemonInfoStyle>
-   
-    <h2> 
-      {familyTitle}
+    <FadeAnimation direction="left" delay={100} duration={300} damping={1} cascade triggerOnce>
+      <PokemonInfoStyle>
+        <h2>{familyTitle}</h2>
+        <FlipAnimation direction="vertical" delay={300} damping={1.5}cascade divWidth='100%' triggerOnce >
        
-       
-       </h2>
-    <ColumnFlexStyle flexWidth='100%'alignItems='flex-start'>
-    
-    <FlipAnimation direction='vertical' delay={100} damping={0.5} cascade triggerOnce >  
-      <FlexStyle flexWidth='100%'>
-     
-       {familyMembers.map((member) => (
-        
-   
-                <PokemonPreview name={member!.name!} locale={locale} />
-              
-      
+          <FlexStyle flexWidth="100%" alignItems='center' justifyContent='center'>
          
-        ))}
+            {familyMembers.map((member) => (
+              <PokemonPreview
+                name={member!.name!}
+                key={`${member!.name!}${PreviewArrayId}`}
+                locale={locale}
+              />
+            ))}
+          </FlexStyle>
+          </FlipAnimation>
        
-         </FlexStyle>
-         </FlipAnimation>
-    </ColumnFlexStyle>
-    </PokemonInfoStyle>
+      </PokemonInfoStyle>
     </FadeAnimation>
-    
   );
 };
 

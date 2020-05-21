@@ -32,7 +32,7 @@ const FlexStyle=styled.div<{flexHeight?:string,flexWidth?:string,flexMinWidth?:s
      ${(props)=>props.mediaHl!==undefined?`height:${props.mediaHl}`:''};
      ${(props)=>props.fontSl!==undefined?`font-size:${props.fontSl}`:''};
   }
-  @media (min-width: 2000px) {
+  @media (min-width: 1800px) {
     ${(props)=>props.mediaWxl!==undefined?`width:${props.mediaWxl}`:''};
      ${(props)=>props.mediaHxl!==undefined?`height:${props.mediaHxl}`:''};
      ${(props)=>props.fontSxl!==undefined?`font-size:${props.fontSxl}`:''};

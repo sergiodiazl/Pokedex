@@ -12,13 +12,16 @@ import LinkStyle from '../../styles/LinkStyle';
 import {
   fetchPokemonPreviewData,
   fetchPokemonFullDetails,
-  checkFetchError,
+  correctFetch,
 } from '../../utils/pokemonData';
 import { PokemonFullDetailsInterface } from '../../types/pokemonFullDetails';
 import { localizeApiresponse } from '../../locale/localizeApiTexts';
 import { ShakeAnimation } from '../../styles/Animations';
 import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle';
 import { PreviewImg } from '../../styles/ResponsiveImg';
+import Loading from '../loading';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { getProperty } from '../../utils/objectUtils';
 
 interface Props {
   name: string;
@@ -36,7 +39,7 @@ interface CardProps {
 const SuccessFulPreviewCard = (props: CardProps) => {
   const { id, sprites, locale, localName, pokemonTypes } = props;
   return (
-    <LinkStyle to={`/pokemon/${id}`}>
+    <LinkStyle to={`/pokemon/${id}`}  >
       <CardStyle
         hoverAnimation={ShakeAnimation}
         alignItems="flex-start"
@@ -90,40 +93,42 @@ const SuccessFulPreviewCard = (props: CardProps) => {
 };
 const LoadingPreviewCard = () => (
   <CardStyle
-    flexWidth="80px"
-    flexHeight="170px"
-    mediaWs="5rem"
-    mediaHs="10rem"
-    mediaWm="7rem"
-    mediaHm="12rem"
-    mediaWl="10rem"
-    mediaHl="15rem"
-    mediaWxl="20rem"
-    mediaHxl="28rem"
-    fontSize="6.5px"
-    fontSm="9px"
-    fontSl="12px"
-    fontSxl="20px"
+  flexWidth="80px"
+  flexHeight="170px"
+  mediaWs="5rem"
+  mediaHs="10rem"
+  mediaWm="7rem"
+  mediaHm="14rem"
+  mediaWl="10rem"
+  mediaHl="18rem"
+  mediaWxl="20rem"
+  mediaHxl="35rem"
+  fontSize="6.5px"
+  fontSm="9px"
+  fontSl="12px"
+  fontSxl="20px"
+  imgBg='none'
+  flexPadding='0'
   >
-    <ColumnFlexStyle>Loading</ColumnFlexStyle>
+    <ColumnFlexStyle flexWidth='100%'flexHeight='100%'><Loading/></ColumnFlexStyle>
   </CardStyle>
 );
 const ErrorPreviewCard = () => (
   <CardStyle
-    flexWidth="80px"
-    flexHeight="170px"
-    mediaWs="5rem"
-    mediaHs="10rem"
-    mediaWm="7rem"
-    mediaHm="12rem"
-    mediaWl="10rem"
-    mediaHl="15rem"
-    mediaWxl="20rem"
-    mediaHxl="28rem"
-    fontSize="6.5px"
-    fontSm="9px"
-    fontSl="12px"
-    fontSxl="20px"
+  flexWidth="80px"
+  flexHeight="170px"
+  mediaWs="5rem"
+  mediaHs="10rem"
+  mediaWm="7rem"
+  mediaHm="14rem"
+  mediaWl="10rem"
+  mediaHl="18rem"
+  mediaWxl="20rem"
+  mediaHxl="35rem"
+  fontSize="6.5px"
+  fontSm="9px"
+  fontSl="12px"
+  fontSxl="20px"
   >
     <ColumnFlexStyle>Preview error</ColumnFlexStyle>
   </CardStyle>
@@ -133,25 +138,37 @@ const PokemonPreview = (props: Props) => {
 
   const [preview, setPreview] = useState({} as PokemonPreviewDetailsInterface);
   const [details, setDetails] = useState({} as PokemonFullDetailsInterface);
-
+  const [loading,setLoading]=useState(true)
+  const [storedPokemon,setStoredPokemon]=useLocalStorage('pokemon',{})
+  const isStored=getProperty(storedPokemon,name)!==null
   const [fetchError, setFetchError] = useState(false);
   //fetch data
   useEffect(() => {
-    const fetchPreview = async () => {
+    let isMounted=true
+    const fetchPokemon= async () => {
       const previewData = await fetchPokemonPreviewData(name);
-      setPreview(previewData);
-    };
-    const fetchDetails = async () => {
       const detailsData = await fetchPokemonFullDetails(name);
-      setDetails(detailsData);
+      if(isMounted){
+      setPreview(previewData);
+      setDetails(detailsData); 
+    }
     };
-    fetchPreview();
-    fetchDetails();
-  }, [name]);
+   if(isStored){
+
+   }else{
+     
+   fetchPokemon()
+   }
+    return()=>{
+      
+      isMounted=false
+    }
+  }, [name,isStored]);
   useEffect(() => {
+    setLoading(false)
     if (
-      checkFetchError(details) === true ||
-      checkFetchError(preview) === true
+      correctFetch(details) ===false ||
+      correctFetch(preview) === false
     ) {
       setFetchError(true);
     }

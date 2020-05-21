@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 export const ResponsiveImg=styled.img<{imgWidth?:string}>`
-   width:${(props)=>props.imgWidth!==undefined?props.imgWidth:'100%'};
+   width:${({imgWidth})=>imgWidth!==undefined?imgWidth:'100%'};
    display:block;
     height:auto;
 

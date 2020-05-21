@@ -3,28 +3,24 @@ import FlexStyle from'./FlexStyle'
 const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyframes,fontSize?:string,imgBg?:string,imgShadow?:boolean}>`
    
     background:${({ theme }) => theme.colors.card};
-    padding:${(props)=>props.flexPadding!==undefined?props.flexPadding:'5%'};
+    padding:${({flexPadding})=>flexPadding!==undefined?flexPadding:'5%'};
     margin:1rem 0.5rem;
     border: 2px solid #cc8ea259;
   border-radius: 3px;
-  box-shadow:  ${({ theme }) => `0 4px 8px 0 ${theme.colors.mainShadow}`};
-   overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-all;
-  word-break: break-word;
-  hyphens: auto;
+  box-shadow:${({ theme }) =>`0 4px 8px 0 ${theme.colors.mainShadow}`};
+   
  
   & img{
-    background:${(props)=>props.imgBg!==undefined?`${props.imgBg}`:'#cc8ea259'};
+    background:${({imgBg})=>imgBg!==undefined?`${imgBg}`:'#cc8ea259'};
    
-  box-shadow:  ${( props ) =>props.imgShadow? `0 4px 8px 0 ${props.theme.colors.mainShadow}`:''};
+  box-shadow:  ${({imgShadow,theme}) =>imgShadow? `0 4px 8px 0 ${theme.colors.mainShadow}`:''};
     border-radius:50%;
-    animation:${(props)=>props.mainAnimation!==undefined?css`${props.mainAnimation} 2s linear infinite`:'none'};
+    animation:${({mainAnimation})=>mainAnimation!==undefined?css`${mainAnimation} 2s linear infinite`:'none'};
     transition:animation 0.5s linear 
      }
      &:hover img{
    
-    animation:${(props)=>props.hoverAnimation!==undefined?css`${props.hoverAnimation} 0.5s linear infinite`:'none'};
+    animation:${({hoverAnimation})=>hoverAnimation!==undefined?css`${hoverAnimation} 0.5s linear infinite`:'none'};
      }
   
    

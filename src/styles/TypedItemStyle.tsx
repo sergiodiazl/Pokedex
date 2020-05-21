@@ -29,9 +29,9 @@ const getTypeColor=(name:string)=>{
 const TypedItemStyle=styled(FlexStyle)< {name:string,itemPadding?:string}>`
     
     margin:1% 2%;
-    padding:${(props)=>props.itemPadding!==undefined?props.itemPadding:'5%'};
+    padding:${({itemPadding})=>itemPadding!==undefined?itemPadding:'5%'};
     border-radius:5%;
-    background:${props=>getTypeColor(props.name)};
+    background:${({name})=>getTypeColor(name)};
     font-weight:bold;
     box-shadow:  ${({ theme }) => `0 2px 4px 0 ${theme.colors.mainShadow}`};;
     text-align:center;
@@ -50,14 +50,14 @@ const TypedItemStyle=styled(FlexStyle)< {name:string,itemPadding?:string}>`
    } 
   }
   @media (min-width: 700px) {
-    width:${(props)=>props.flexWidth!==undefined?props.flexWidth:'45%'};
+    width:${({flexWidth})=>flexWidth!==undefined?flexWidth:'45%'};
   
  
     
    
   }
   @media (min-width: 1000px) {
-    width:${(props)=>props.flexWidth!==undefined?props.flexWidth:'25%'};
+    width:${({flexWidth})=>flexWidth!==undefined?flexWidth:'25%'};
   
    
    

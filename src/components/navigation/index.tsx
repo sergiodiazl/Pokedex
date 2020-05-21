@@ -16,21 +16,24 @@ const Navigation = (props: Props) => {
 
     return newUrl;
   };
-  const handleClick=(event:React.MouseEvent<HTMLButtonElement>)=>{
-      event.currentTarget.blur()
-
-  }
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.currentTarget.blur();
+  };
   return (
     <FlexStyle flexPadding="1%" flexWidth="100%">
-      <FlexStyle flexWidth="25%" wrapReverse justifyContent='flex-end' >
+      <FlexStyle flexWidth="25%" wrapReverse justifyContent="flex-end">
         {current !== 1 ? (
           <>
             <LinkStyle to={createUrl(1)}>
-              <NavigationButtonStyle onClick={handleClick}>{`<<`}</NavigationButtonStyle>
+              <NavigationButtonStyle
+                onClick={handleClick}
+              >{`<<`}</NavigationButtonStyle>
             </LinkStyle>
 
             <LinkStyle to={createUrl(current - 1)}>
-              <NavigationButtonStyle onClick={handleClick}>{`< `}</NavigationButtonStyle>
+              <NavigationButtonStyle
+                onClick={handleClick}
+              >{`< `}</NavigationButtonStyle>
             </LinkStyle>
           </>
         ) : (
@@ -41,18 +44,22 @@ const Navigation = (props: Props) => {
           </>
         )}
       </FlexStyle>
-      <FlexStyle flexWidth='50%'>
+      <FlexStyle flexWidth="50%">
         <SearchButton />
       </FlexStyle>
-      <FlexStyle flexWidth="25%" justifyContent='flex-start'>
+      <FlexStyle flexWidth="25%" justifyContent="flex-start">
         {current !== maxPlace ? (
           <>
             <LinkStyle to={createUrl(current + 1)}>
-              <NavigationButtonStyle onClick={handleClick}>{` >`}</NavigationButtonStyle>
+              <NavigationButtonStyle
+                onClick={handleClick}
+              >{` >`}</NavigationButtonStyle>
             </LinkStyle>
 
             <LinkStyle to={createUrl(maxPlace)}>
-              <NavigationButtonStyle onClick={handleClick}>{`>>`}</NavigationButtonStyle>
+              <NavigationButtonStyle
+                onClick={handleClick}
+              >{`>>`}</NavigationButtonStyle>
             </LinkStyle>
           </>
         ) : (

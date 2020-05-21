@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { AppContextConsumer } from '../../appContext'
+import { AppContextConsumer } from '../../contexts/appContext'
 import { PokemonContextConsumer } from '../../contexts/pokemonContext'
 import {AbilitiesEntity}from '../../types/pokemonPreviewDetails'
 import { fetchDetail } from '../../utils/pokemonData'
@@ -10,6 +10,8 @@ import PokemonInfoStyle from '../../styles/PokemonInfoStyle'
 import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle'
 import { localizeAppTexts } from '../../locale/localizeAppTexts'
 import{Fade} from 'react-awesome-reveal'
+
+import { FadeAnimation } from '../../styles/Animations'
 interface Props {
     
 }
@@ -23,25 +25,36 @@ const Ability =(props:AbilityProps)=>{
     const{name,url}=ability
     const[localName,setLocalName]=useState(name)
     const [localFlavorText, setlocalFlavorText] = useState('')
-    useEffect(() => {
+    
+    useEffect(()=> {
+    
+            
+        let isMounted=true
         const fetchAbilityDetails = async () => {
             const abilityDetails= await fetchDetail(url);
             
-            const lName=localizeApiresponse(abilityDetails.names,locale,'name')
-            const lFlavor=localizeApiresponse(abilityDetails.flavor_text_entries,locale,'flavor_text')
-            setLocalName(lName!);
-            setlocalFlavorText(lFlavor!)
-          };
-          fetchAbilityDetails();
-    }, [url,locale])
+               if (isMounted){
+                const lName=localizeApiresponse(abilityDetails.names,locale,'name')
+                const lFlavor=localizeApiresponse(abilityDetails.flavor_text_entries,locale,'flavor_text')
+                setLocalName(lName!);
+                setlocalFlavorText(lFlavor!)
+    
+            }    
+        };
+      
+      
+            fetchAbilityDetails();
+      
+         return()=>{isMounted=false}
+        }, [url,locale])
     return(
         <ColumnFlexStyle flexWidth='100%'alignItems='flex-start'>
-              <Fade direction='top' triggerOnce>
+              <FadeAnimation direction='top' triggerOnce>
             <h3>{localName} {is_hidden?`★`:null}</h3>
             <p>
             {localFlavorText}
             </p>
-            </Fade>
+            </FadeAnimation>
         </ColumnFlexStyle>
     )
 }
