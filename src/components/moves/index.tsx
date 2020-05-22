@@ -76,10 +76,13 @@ const Move = (props: MoveProps) => {
   
 };
 const Moves = (props: Props) => {
+ 
+
   return (
     <PokemonContextConsumer>
       {(context) => {
         const { moves } = context!;
+        
         return (
           <AppContextConsumer>
             {(context) => {

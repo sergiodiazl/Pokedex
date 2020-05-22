@@ -28,7 +28,7 @@ const Main = (props: Props) => {
 
         return (
         
-            <MainContentStyle flexWidth="100%" flexHeight="100%">
+            <MainContentStyle flexWidth="100%" flexHeight="90%">
             <Navigation
               current={currentPage}
               place="/page/"
