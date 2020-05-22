@@ -16,7 +16,7 @@ import {
 } from '../../utils/pokemonData';
 import { PokemonFullDetailsInterface } from '../../types/pokemonFullDetails';
 import { localizeApiresponse } from '../../locale/localizeApiTexts';
-import { ShakeAnimation } from '../../styles/Animations';
+import { ShakeAnimation, SwingAnimation } from '../../styles/Animations';
 import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle';
 import { PreviewImg } from '../../styles/ResponsiveImg';
 import Loading from '../loading';
@@ -107,10 +107,8 @@ const LoadingPreviewCard = () => (
   fontSm="9px"
   fontSl="12px"
   fontSxl="20px"
-  imgBg='none'
-  flexPadding='0'
   >
-    <ColumnFlexStyle flexWidth='100%'flexHeight='100%'><Loading/></ColumnFlexStyle>
+    <ColumnFlexStyle flexWidth='100%' flexPadding='1%'><Loading/></ColumnFlexStyle>
   </CardStyle>
 );
 const ErrorPreviewCard = () => (
@@ -138,7 +136,6 @@ const PokemonPreview = (props: Props) => {
 
   const [preview, setPreview] = useState({} as PokemonPreviewDetailsInterface);
   const [details, setDetails] = useState({} as PokemonFullDetailsInterface);
-  const [loading,setLoading]=useState(true)
   const [storedPokemon,setStoredPokemon]=useLocalStorage('pokemon',{})
   const isStored=getProperty(storedPokemon,name)!==null
   const [fetchError, setFetchError] = useState(false);
@@ -148,13 +145,23 @@ const PokemonPreview = (props: Props) => {
     const fetchPokemon= async () => {
       const previewData = await fetchPokemonPreviewData(name);
       const detailsData = await fetchPokemonFullDetails(name);
-      if(isMounted){
+      if(isMounted&& correctFetch(detailsData)&&correctFetch(previewData) ){
       setPreview(previewData);
       setDetails(detailsData); 
+      /*los pokemon en la busqueda principal solo contienen
+      nombre y url de su data de preview,no los detalless 
+      */
+     const pokemonId=previewData.id
+      setStoredPokemon({...storedPokemon,[name]:{previewData,detailsData},[pokemonId]:{previewData,detailsData}})
+
     }
     };
    if(isStored){
-
+   const pokemonInfo=getProperty(storedPokemon,name)
+      const {previewData,detailsData}=pokemonInfo
+      
+      setPreview(previewData)
+      setDetails(detailsData)
    }else{
      
    fetchPokemon()
@@ -163,9 +170,9 @@ const PokemonPreview = (props: Props) => {
       
       isMounted=false
     }
-  }, [name,isStored]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name,isStored,storedPokemon   ]);
   useEffect(() => {
-    setLoading(false)
     if (
       correctFetch(details) ===false ||
       correctFetch(preview) === false
@@ -178,7 +185,7 @@ const PokemonPreview = (props: Props) => {
   const localName = localizeApiresponse(names!, locale, 'name') as string;
   const { id, sprites, types: pokemonTypes } = preview!;
   return (
-    <>
+    <SwingAnimation triggerOnce>
       {fetchError ? (
         <ErrorPreviewCard />
       ) : (
@@ -198,7 +205,7 @@ const PokemonPreview = (props: Props) => {
           )}
         </>
       )}
-    </>
+    </SwingAnimation>
   );
 };
 

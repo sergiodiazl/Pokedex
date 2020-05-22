@@ -4,7 +4,6 @@ import Loading from '../loading';
 import axios from 'axios';
 import FlexStyle from '../../styles/FlexStyle';
 import { AppContextConsumer } from '../../contexts/appContext';
-import { FadeAnimation } from '../../styles/Animations';
 const PokemonPreview = lazy(() => import('../pokemonPreview'));
 interface Props {
   page: number;

@@ -1,10 +1,10 @@
 import styled, { Keyframes, css } from 'styled-components'
 import FlexStyle from'./FlexStyle'
-const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyframes,fontSize?:string,imgBg?:string,imgShadow?:boolean}>`
+const CardStyle=styled(FlexStyle)<{mainAnimation?:Keyframes,hoverAnimation?:Keyframes,fontSize?:string,imgBg?:string,imgShadow?:boolean,center?:boolean}>`
    
     background:${({ theme }) => theme.colors.card};
     padding:${({flexPadding})=>flexPadding!==undefined?flexPadding:'5%'};
-    margin:1rem 0.5rem;
+    margin:${({center})=>center?'0 auto':'1rem 0.5rem'};
     border: 2px solid #cc8ea259;
   border-radius: 3px;
   box-shadow:${({ theme }) =>`0 4px 8px 0 ${theme.colors.mainShadow}`};

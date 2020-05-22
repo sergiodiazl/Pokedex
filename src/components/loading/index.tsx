@@ -13,7 +13,7 @@ const Loading = (props: Props) => {
         const { locale } = context!;
         const { loadingText } = localizeAppTexts(locale);
         return (
-          <ColumnFlexStyle flexHeight='100%'flexWidth='100%'>
+          <ColumnFlexStyle flexHeight='100%'>
             <ResposiveImg src={LoadingGif} imgWidth="60%" />
 
             <p>{loadingText}</p>

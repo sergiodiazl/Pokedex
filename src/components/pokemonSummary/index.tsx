@@ -9,7 +9,7 @@ import FlexStyle, {
   ColumnFlexStyle,
   ColumnToRowFlexStyle,
 } from '../../styles/FlexStyle';
-import { WalkAnimation, ShakeAnimation, FlipAnimation, FadeAnimation, ZoomAnimation } from '../../styles/Animations';
+import { WalkAnimation, ShakeAnimation, FadeAnimation, ZoomAnimation } from '../../styles/Animations';
 import ResponsiveImg from '../../styles/ResponsiveImg';
 interface Props {
   locale: string;
@@ -19,10 +19,11 @@ const PokemonSummary = (props: Props) => {
   const { locale } = props;
   return (
    
-   
-      <CardStyle
+<FadeAnimation divWidth='100%'>
+     
+<CardStyle
         flexWidth="100%"
-        mediaWs="500%"
+        mediaWs="100%"
         mediaHs="100%"
         mediaWm="50%"
         mediaWl="40%"
@@ -35,6 +36,7 @@ const PokemonSummary = (props: Props) => {
         mainAnimation={WalkAnimation}
         hoverAnimation={ShakeAnimation}
         imgBg="none"
+        center
       >
      
         <PokemonContextConsumer>
@@ -57,7 +59,7 @@ const PokemonSummary = (props: Props) => {
             return (
               <ColumnToRowFlexStyle flexWidth="100%" flexHeight="100%">
                 <FlexStyle flexWidth="50%">
-                <ZoomAnimation divWidth='100%'triggerOnce>
+                <ZoomAnimation divWidth='100%' delay={100}fraction={1}>
                   <FlexStyle flexWidth="100%">
               
                  <ResponsiveImg
@@ -104,6 +106,7 @@ const PokemonSummary = (props: Props) => {
         </PokemonContextConsumer>
       
       </CardStyle>
+</FadeAnimation>
    
    
   );

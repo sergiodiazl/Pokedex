@@ -67,7 +67,7 @@ const PokemonFamily = (props: Props) => {
     familyTree(chain!);
   }, [chain]);
   return (
-    <FadeAnimation direction="left" delay={100} duration={300} damping={1} cascade triggerOnce>
+    <FadeAnimation direction="left" delay={100} duration={300} damping={1} cascade triggerOnce divWidth='100%'>
       <PokemonInfoStyle>
         <h2>{familyTitle}</h2>
         <FlipAnimation direction="vertical" delay={300} damping={1.5}cascade divWidth='100%' triggerOnce >

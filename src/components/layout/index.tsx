@@ -41,6 +41,7 @@ const Layout: React.FC<Props> = (props) => {
               <FlexStyle
                 flexWidth="100%"
                 flexHeight='100%'
+                mediaHm='100px'mediaHl='125px'mediaHxl='150px'
                 alignItems="flex-start"
                 justifyContent="space-between"
               >

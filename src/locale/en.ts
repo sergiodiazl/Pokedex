@@ -9,7 +9,7 @@ const en:LocalTexts={
     statTitle:'Stats',
     typesTitle:'Types',
     familyTitle:'Family',
-    footerText:'Pokemon is copryrighted by Nintendo.',
+    footerText:'Pokemon is copyrighted by Nintendo.',
     notFoundTitle:'Search error',
     notFoundText:'What you were searching for could not be found.It may not exist or maybe it was a server error.Meanwhile you can discover a random pokemon',
  

@@ -22,7 +22,7 @@ const PokemonFlavor = (props: Props) => {
           'flavor_text'
         );
         return (
-          <FadeAnimation direction='top'  delay={200} cascade triggerOnce>
+          <FadeAnimation direction='top'  delay={200} cascade triggerOnce divWidth='100%'>
          <PokemonInfoStyle as="section" alignItems='flex-start'> 
          
              <h2>{storyTitle}</h2>

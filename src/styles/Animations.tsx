@@ -43,6 +43,9 @@ export const ShakeAnimation=keyframes`
 export const FadeAnimation=styled(Fade)<{divHeight?:string,divWidth?:string}>`
 height:${({divHeight})=>divHeight!==undefined?divHeight:'auto'};
 width:${({divWidth})=>divWidth!==undefined?divWidth:'auto'};
+
+
+
 ` 
 export const FlipAnimation=styled(Flip)<{divHeight?:string,divWidth?:string}>`
     height:${({divHeight})=>divHeight!==undefined?divHeight:'auto'};

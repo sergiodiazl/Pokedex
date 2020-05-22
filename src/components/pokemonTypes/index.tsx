@@ -9,7 +9,7 @@ import { AppContextConsumer } from '../../contexts/appContext';
 import TypedItemStyle from '../../styles/TypedItemStyle';
 import FlexStyle, { ColumnFlexStyle } from '../../styles/FlexStyle';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { isEmpty, getProperty } from '../../utils/objectUtils';
+import {  getProperty } from '../../utils/objectUtils';
 
 interface Props {
   locale: string;
@@ -21,8 +21,8 @@ interface TypeProps extends NamedEntity {
 export const PokemonType = (props: TypeProps) => {
   const { name, url, locale } = props;
   const [localTypeName, setLocalTypeName] = useState(name);
-  const [storedFetchTypes, setStoredFetchTypes] = useLocalStorage('types', {});
-  const isStored=getProperty(storedFetchTypes,url)!==null
+  const [storedTypes, setstoredTypes] = useLocalStorage('types', {});
+  const isStored=getProperty(storedTypes,name)!==null
   useEffect(() => {
     let isMounted = true;
     const fetchTypeDetails = async () => {
@@ -32,14 +32,15 @@ export const PokemonType = (props: TypeProps) => {
       if (isMounted) {
       console.log(typeDetails,correctFetch(typeDetails))
        if(correctFetch(typeDetails)){
-         console.log('type fetch ok',LName)
-        setStoredFetchTypes({...storedFetchTypes,[url]:typeDetails});
+       
+         
+        setstoredTypes({...storedTypes,[name]:typeDetails});
         setLocalTypeName(LName!);
        }
       }
     };
     if (isStored) {
-      const typeDetails = getProperty(storedFetchTypes,url);
+      const typeDetails = getProperty(storedTypes,name);
       const LName = localizeApiresponse(typeDetails.names, locale, 'name');
       setLocalTypeName(LName!);
     } else {
@@ -48,7 +49,7 @@ export const PokemonType = (props: TypeProps) => {
     return () => {
       isMounted = false;
     };
-  }, [locale, url, ]);
+  }, [isStored,url,name,locale,storedTypes ]);
   return (
     <TypedItemStyle flexWidth="100%" name={name}>
       {localTypeName}
