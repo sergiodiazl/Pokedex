@@ -66,7 +66,7 @@ const Stats = (props: Props) => {
               const { locale } = context!;
               const { statTitle } = localizeAppTexts(locale);
               return (
-                <FadeAnimation direction="top" triggerOnce>
+                <FadeAnimation direction="top" triggerOnce divWidth='100%'>
                   <PokemonInfoStyle as="section">
                     <h2>{statTitle}</h2>
                     <FlexStyle flexWidth="100%" justifyContent="space-around">

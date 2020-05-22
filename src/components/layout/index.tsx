@@ -41,7 +41,7 @@ const Layout: React.FC<Props> = (props) => {
               <FlexStyle
                 flexWidth="100%"
                 flexHeight='100%'
-                mediaHm='100px'mediaHl='125px'mediaHxl='150px'
+                mediaHm='80px'mediaHl='100px'
                 alignItems="flex-start"
                 justifyContent="space-between"
               >
@@ -54,7 +54,7 @@ const Layout: React.FC<Props> = (props) => {
                 </FlexStyle>
 
                 <FlexStyle flexWidth='100%' flexHeight='100%' mediaWm='70%' justifyContent='flex-end'>
-                        <FlexStyle  flexWidth='100%' mediaWm='60%'mediaWl='40%' mediaWxl='20%'>
+                        <FlexStyle  flexWidth='100%' mediaWm='60%'mediaWl='40%' mediaWxl='30%'>
                               
                         <LanguageButton />    
                   </FlexStyle>

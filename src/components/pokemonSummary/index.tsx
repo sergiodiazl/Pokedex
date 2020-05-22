@@ -19,7 +19,7 @@ const PokemonSummary = (props: Props) => {
   const { locale } = props;
   return (
    
-<FadeAnimation divWidth='100%'>
+<FadeAnimation divWidth='100%'triggerOnce>
      
 <CardStyle
         flexWidth="100%"
@@ -59,7 +59,7 @@ const PokemonSummary = (props: Props) => {
             return (
               <ColumnToRowFlexStyle flexWidth="100%" flexHeight="100%">
                 <FlexStyle flexWidth="50%">
-                <ZoomAnimation divWidth='100%' delay={100}fraction={1}>
+                <ZoomAnimation divWidth='100%' delay={100}fraction={1}triggerOnce>
                   <FlexStyle flexWidth="100%">
               
                  <ResponsiveImg
