@@ -18,15 +18,16 @@ import { MainContentStyle } from '../../styles/LayoutStyle';
 
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
 import { PokemonCombinedData } from '../../types/pokemonCombinedData';
-import Stats from '../stats';
-import Moves from '../moves';
+import Navigation from '../navigation'
+
 import useLocalStorage from '../../hooks/useLocalStorage';
 ////////////////////////////
-const Navigation = lazy(() => import('../navigation'));
 const FlexStyle = lazy(() => import('../../styles/FlexStyle'));
 const PokemonSummary = lazy(() => import('../pokemonSummary'));
 const PokemonFlavor = lazy(() => import('../pokemonFlavor'));
 const Abilities = lazy(() => import('../abilities'));
+const Stats =lazy(()=>import('../stats'));
+const Moves =lazy(()=>import('../moves'));
 const PokemonFamily = lazy(() => import('../pokemonFamily'));
 /////
 interface Props {
@@ -74,6 +75,7 @@ const PokemonInfo = (props: Props) => {
     return () => {
       isMounted = false;
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name,isStored,storedPokemon]);
   useEffect(() => {
     setLoading(false);
@@ -97,7 +99,7 @@ const PokemonInfo = (props: Props) => {
     <MainContentStyle flexWidth="100%" flexPadding="5%">
       {fetchError ? <Redirect to="/notFound" /> : null}
       {loading ? (
-        <Loading />
+       <Loading/>
       ) : (
         <>
           <AppContextConsumer>
@@ -112,14 +114,14 @@ const PokemonInfo = (props: Props) => {
               return (
                 <>
                   {!isEmpty(pokemonContext) ? (
+                    <>
                     
-                      <Suspense fallback={loading}>
                         <Navigation
                           current={pokemonId!}
                           place="/pokemon/"
                           maxPlace={totalPokemon}
                         />
-
+  <Suspense fallback={loading}>
                         <PokemonContextProvider value={pokemonContext}>
                           <FlexStyle
                             flexWidth="100%"
@@ -145,9 +147,10 @@ const PokemonInfo = (props: Props) => {
                             place="/pokemon/"
                             maxPlace={totalPokemon}
                           />
+                    
                         </PokemonContextProvider>
-                      </Suspense>
-                 
+                        </Suspense>
+                 </>
                   ) : (
                    <Loading/>
                   )}

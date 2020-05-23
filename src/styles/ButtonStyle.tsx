@@ -70,8 +70,9 @@ height:30px;
 `
 export const RandomButtonStyle=styled(ButtonStyle)`
 width:100%;
-background: linear-gradient(337deg, rgba(201,48,223,1) 0%, rgba(79,11,56,1) 20%, rgba(216,15,255,1) 52%, rgba(108,14,14,1) 86%);
-
+background: linear-gradient(29deg, rgba(109,56,144,1) 0%, rgba(187,140,190,1) 50%, rgba(109,56,144,1) 100%);
+background-size:250% 100%;
+  background-position:100% 50%;
 
 &:hover>* {
     background-position:0% 50%;
