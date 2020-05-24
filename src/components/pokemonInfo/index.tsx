@@ -2,32 +2,34 @@ import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PokemonPreviewDetailsInterface } from '../../types/pokemonPreviewDetails';
 import { PokemonFullDetailsInterface } from '../../types/pokemonFullDetails';
+
+import { PokemonCombinedData } from '../../types/pokemonCombinedData';
+import { localizeAppTexts } from '../../locale/localizeAppTexts';
+
 import {
   fetchPokemonFullDetails,
   fetchPokemonPreviewData,
   correctFetch,
 } from '../../utils/pokemonData';
 
-import { localizeApiresponse } from '../../locale/localizeApiTexts';
-
 import { PokemonContextProvider } from '../../contexts/pokemonContext';
 import { AppContextConsumer } from '../../contexts/appContext';
-import { isEmpty, getProperty } from '../../utils/objectUtils';
+import { localizeApiresponse } from '../../locale/localizeApiTexts';
+
+import { isEmpty } from '../../utils/objectUtils';
 import Loading from '../loading';
+import Navigation from '../navigation';
 import { MainContentStyle } from '../../styles/LayoutStyle';
 
-import { localizeAppTexts } from '../../locale/localizeAppTexts';
-import { PokemonCombinedData } from '../../types/pokemonCombinedData';
-import Navigation from '../navigation'
 
-import useLocalStorage from '../../hooks/useLocalStorage';
-////////////////////////////
+
+//////////////////////////// lazy imports
 const FlexStyle = lazy(() => import('../../styles/FlexStyle'));
 const PokemonSummary = lazy(() => import('../pokemonSummary'));
 const PokemonFlavor = lazy(() => import('../pokemonFlavor'));
 const Abilities = lazy(() => import('../abilities'));
-const Stats =lazy(()=>import('../stats'));
-const Moves =lazy(()=>import('../moves'));
+const Stats = lazy(() => import('../stats'));
+const Moves = lazy(() => import('../moves'));
 const PokemonFamily = lazy(() => import('../pokemonFamily'));
 /////
 interface Props {
@@ -44,9 +46,6 @@ const PokemonInfo = (props: Props) => {
   );
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
-  const[storedPokemon,setStoredPokemon]=useLocalStorage('pokemon',{}
-  )
-  const isStored=getProperty(storedPokemon,name)!==null
   //fetch data
   useEffect(() => {
     let isMounted = true;
@@ -55,31 +54,22 @@ const PokemonInfo = (props: Props) => {
       const previewData = await fetchPokemonPreviewData(name);
       const detailsData = await fetchPokemonFullDetails(name);
 
-      if (isMounted && correctFetch(detailsData)&&correctFetch(previewData)) {
-        
+      if (isMounted && correctFetch(detailsData) && correctFetch(previewData)) {
         setPreview(previewData);
         setDetails(detailsData);
-        setStoredPokemon({...storedPokemon,[name]:{previewData,detailsData}})
       }
     };
 
-    if(isStored){
-      const pokemonInfo=getProperty(storedPokemon,name)
-      const {previewData,detailsData}=pokemonInfo
-      
-      setPreview(previewData)
-      setDetails(detailsData)
-    }else{
-      fetchPreviewAndDetails();
-    }
+    fetchPreviewAndDetails();
+
     return () => {
       isMounted = false;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name,isStored,storedPokemon]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
   useEffect(() => {
     setLoading(false);
-    if (correctFetch(details) === false|| correctFetch(preview) === false) {
+    if (correctFetch(details) === false || correctFetch(preview) === false) {
       setFetchError(true);
     } else {
       if (!isEmpty(preview) && !isEmpty(details)) {
@@ -90,16 +80,13 @@ const PokemonInfo = (props: Props) => {
     }
   }, [details, preview]);
 
-  useEffect(() => {
-    console.log(pokemonContext);
-  }, [pokemonContext]);
   const { names, id: pokemonId, evolution_chain: family } = pokemonContext;
 
   return (
     <MainContentStyle flexWidth="100%" flexPadding="5%">
       {fetchError ? <Redirect to="/notFound" /> : null}
       {loading ? (
-       <Loading/>
+        <Loading />
       ) : (
         <>
           <AppContextConsumer>
@@ -115,13 +102,12 @@ const PokemonInfo = (props: Props) => {
                 <>
                   {!isEmpty(pokemonContext) ? (
                     <>
-                    
-                        <Navigation
-                          current={pokemonId!}
-                          place="/pokemon/"
-                          maxPlace={totalPokemon}
-                        />
-  <Suspense fallback={loading}>
+                      <Navigation
+                        current={pokemonId!}
+                        place="/pokemon/"
+                        maxPlace={totalPokemon}
+                      />
+                      <Suspense fallback={loading}>
                         <PokemonContextProvider value={pokemonContext}>
                           <FlexStyle
                             flexWidth="100%"
@@ -136,10 +122,10 @@ const PokemonInfo = (props: Props) => {
                           <PokemonFlavor locale={locale} />
                           <Abilities />
                           <PokemonFamily locale={locale} family={family} />
-                          <Stats/>
-                          <Moves/>
-                         
-                         
+                          <Stats />
+                          <Suspense fallback={<div>...</div>}>
+                            <Moves />
+                          </Suspense>
 
                           <PokemonFamily locale={locale} family={family} />
                           <Navigation
@@ -147,12 +133,11 @@ const PokemonInfo = (props: Props) => {
                             place="/pokemon/"
                             maxPlace={totalPokemon}
                           />
-                    
                         </PokemonContextProvider>
-                        </Suspense>
-                 </>
+                      </Suspense>
+                    </>
                   ) : (
-                   <Loading/>
+                    <Loading />
                   )}
                 </>
               );

@@ -30,6 +30,7 @@ const TypedItemStyle=styled(FlexStyle)< {name:string,itemPadding?:string}>`
     
     margin:1% 2%;
     padding:${({itemPadding})=>itemPadding!==undefined?itemPadding:'5%'};
+    border: 2px solid #cc8ea259;
     border-radius:5%;
     background:${({name})=>getTypeColor(name)};
     font-weight:bold;

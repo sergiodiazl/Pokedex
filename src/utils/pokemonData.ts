@@ -1,8 +1,10 @@
 import {getProperty} from './objectUtils'
 import axios from 'axios'
 export const correctFetch=(result:object)=>{
+  console.log(result)
     const statusCode=getProperty(result,'status')
-    return statusCode !==null || statusCode!==200
+  
+    return  statusCode!==404
 
 }
 export const fetchPokemonPreviewData =async (name:string)=>{
@@ -16,7 +18,7 @@ export const fetchPokemonPreviewData =async (name:string)=>{
         return previewData
            
     }catch(error){
-        return {result:{status:500}}
+        return {status:404}
     }
 }
 
@@ -28,7 +30,7 @@ export const fetchPokemonFullDetails=async(name:string)=>{
     let details =response.data
       return details 
    }catch(error){
-    return {result:{status:500}}
+    return{status:404}
    }
 }
 
@@ -38,7 +40,7 @@ export const fetchDetail=async(url:string)=>{
      let details =response.data
        return details 
     }catch(error){
-        return {result:{status:500}}
+        return {status:404}
        }
  }
  

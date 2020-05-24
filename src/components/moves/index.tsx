@@ -35,8 +35,8 @@ const Move = (props: MoveProps) => {
       const moveTypeName = moveDetails.type.name;
       const lName = localizeApiresponse(moveDetails.names, locale, 'name');
      if(isMounted &&correctFetch(moveDetails)){
-      console.log('moviemientos grabados antes de grabar',name)
-      console.log(storedMoves)
+    //  console.log('moviemientos grabados antes de grabar',name)
+   //   console.log(storedMoves)
       setStoredMoves({...storedMoves,[name]:moveDetails })
       setLocalName(lName!);
       setTypeName(moveTypeName!);

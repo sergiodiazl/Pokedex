@@ -6,7 +6,7 @@ import {
   Sprites,
   TypesEntity,
 } from '../../types/pokemonPreviewDetails';
-import CardStyle from '../../styles/CardStyle';
+import  { PreviewCardStyle } from '../../styles/CardStyle';
 import PokemonTypes from '../pokemonTypes';
 import LinkStyle from '../../styles/LinkStyle';
 import {
@@ -40,7 +40,7 @@ const SuccessFulPreviewCard = (props: CardProps) => {
   const { id, sprites, locale, localName, pokemonTypes } = props;
   return (
     <LinkStyle to={`/pokemon/${id}`}  >
-      <CardStyle
+      <PreviewCardStyle
         hoverAnimation={ShakeAnimation}
         alignItems="flex-start"
         flexWidth="80px"
@@ -59,9 +59,13 @@ const SuccessFulPreviewCard = (props: CardProps) => {
         fontSxl="20px"
         imgShadow
       >
-        <ColumnFlexStyle flexWidth="100%" flexHeight="100%">
+        <ColumnFlexStyle flexWidth="100%" flexHeight="100%" 
+        justifyContent='flex-start'>
           <FlexStyle flexWidth="100%" flexHeight="50%">
-            <PreviewImg
+          <FlexStyle flexWidth="100%" justifyContent='flex-end'>
+                {`#${id}`}
+              </FlexStyle>
+              <PreviewImg
               src={
                 sprites !== undefined && sprites.front_default !== null
                   ? sprites.front_default
@@ -70,14 +74,11 @@ const SuccessFulPreviewCard = (props: CardProps) => {
               alt={localName}
             />
 
-            <div></div>
           </FlexStyle>
 
           <FlexStyle flexHeight="40%" flexWidth="100%">
             <FlexStyle flexHeight="50%">
-              <FlexStyle flexWidth="100%" flexHeight="40%">
-                {`#${id}`}
-              </FlexStyle>
+              
 
               <FlexStyle flexWidth="100%">{`${localName}`}</FlexStyle>
             </FlexStyle>
@@ -87,12 +88,12 @@ const SuccessFulPreviewCard = (props: CardProps) => {
             ) : null}
           </FlexStyle>
         </ColumnFlexStyle>
-      </CardStyle>
+      </PreviewCardStyle>
     </LinkStyle>
   );
 };
 const LoadingPreviewCard = () => (
-  <CardStyle
+  <PreviewCardStyle
   flexWidth="80px"
   flexHeight="170px"
   mediaWs="5rem"
@@ -107,12 +108,13 @@ const LoadingPreviewCard = () => (
   fontSm="9px"
   fontSl="12px"
   fontSxl="20px"
+  imgBg='none'
   >
     <ColumnFlexStyle flexWidth='100%' flexPadding='1%'><Loading/></ColumnFlexStyle>
-  </CardStyle>
+  </PreviewCardStyle>
 );
 const ErrorPreviewCard = () => (
-  <CardStyle
+  <PreviewCardStyle
   flexWidth="80px"
   flexHeight="170px"
   mediaWs="5rem"
@@ -129,11 +131,11 @@ const ErrorPreviewCard = () => (
   fontSxl="20px"
   >
     <ColumnFlexStyle>Preview error</ColumnFlexStyle>
-  </CardStyle>
+  </PreviewCardStyle>
 );
 const PokemonPreview = (props: Props) => {
   const { name, locale } = props;
-
+ const [loading,setLoading]=useState(true)
   const [preview, setPreview] = useState({} as PokemonPreviewDetailsInterface);
   const [details, setDetails] = useState({} as PokemonFullDetailsInterface);
   const [storedPokemon,setStoredPokemon]=useLocalStorage('pokemon',{})
@@ -145,9 +147,14 @@ const PokemonPreview = (props: Props) => {
     const fetchPokemon= async () => {
       const previewData = await fetchPokemonPreviewData(name);
       const detailsData = await fetchPokemonFullDetails(name);
-      if(isMounted&& correctFetch(detailsData)&&correctFetch(previewData) ){
-      setPreview(previewData);
-      setDetails(detailsData); 
+      if(isMounted  ){
+      if(correctFetch(detailsData)&&correctFetch(previewData)){
+        setPreview(previewData);
+        setDetails(detailsData); 
+      }else{
+setFetchError(true)
+      }
+      setLoading(false)
       /*los pokemon en la busqueda principal solo contienen
       nombre y url de su data de preview,no los detalless 
       */
@@ -162,6 +169,7 @@ const PokemonPreview = (props: Props) => {
       
       setPreview(previewData)
       setDetails(detailsData)
+      setLoading(false)
    }else{
      
    fetchPokemon()
@@ -186,11 +194,11 @@ const PokemonPreview = (props: Props) => {
   const { id, sprites, types: pokemonTypes } = preview!;
   return (
     <SwingAnimation triggerOnce>
-      {fetchError ? (
-        <ErrorPreviewCard />
+      {loading ? (
+        <LoadingPreviewCard />
       ) : (
         <>
-          {id !== undefined ? (
+          {!fetchError? (
             <SuccessFulPreviewCard
               id={id!}
               locale={locale!}
@@ -200,7 +208,7 @@ const PokemonPreview = (props: Props) => {
             />
           ) : (
             <>
-              <LoadingPreviewCard />
+              <ErrorPreviewCard />
             </>
           )}
         </>
