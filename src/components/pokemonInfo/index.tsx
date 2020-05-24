@@ -101,19 +101,19 @@ const PokemonInfo = (props: Props) => {
               return (
                 <>
                   {!isEmpty(pokemonContext) ? (
-                    <>
+<>
                       <Navigation
                         current={pokemonId!}
                         place="/pokemon/"
                         maxPlace={totalPokemon}
                       />
-                      <Suspense fallback={loading}>
+                      <Suspense fallback={<Loading/>}>
                         <PokemonContextProvider value={pokemonContext}>
                           <FlexStyle
                             flexWidth="100%"
                             fontSize="10px"
                             fonts="16px"
-                          >
+                          >                    
                             <h1>{`#${pokemonId} ${localName}`}</h1>
                           </FlexStyle>
                           <FlexStyle flexWidth="100%">
@@ -128,13 +128,14 @@ const PokemonInfo = (props: Props) => {
                           </Suspense>
 
                           <PokemonFamily locale={locale} family={family} />
-                          <Navigation
+                        
+                        </PokemonContextProvider>
+                      </Suspense>
+                      <Navigation
                             current={pokemonId!}
                             place="/pokemon/"
                             maxPlace={totalPokemon}
                           />
-                        </PokemonContextProvider>
-                      </Suspense>
                     </>
                   ) : (
                     <Loading />

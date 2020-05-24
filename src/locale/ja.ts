@@ -18,7 +18,7 @@ const ja:LocalTexts={
     検索エラー`,
     notFoundText:`探しているものが見つかりませんでした。存在しないか、サーバーエラーの可能性があります。一方、ランダムなポケモンを発見できます`,
 
-    searchButton:`Buscar`,
+    searchButton:`探す`,
     searchPlaceHolder:`
     番号を書く`,
     searchTitle:`番号で検索`,

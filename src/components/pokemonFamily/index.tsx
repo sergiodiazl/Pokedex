@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy,Suspense,useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import FlexStyle from '../../styles/FlexStyle';
 import PokemonInfoStyle from '../../styles/PokemonInfoStyle';
@@ -9,9 +9,10 @@ import {
   Chain,
   EvolvesToEntity,
 } from '../../types/evolutionDetails';
-import PokemonPreview from '../pokemonPreview';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
 import { FlipAnimation, FadeAnimation } from '../../styles/Animations';
+//lazy import
+const PokemonPreview= lazy(() => import('../pokemonPreview'));
 interface Props {
   locale: string;
   family: EvolutionChain;
@@ -75,11 +76,13 @@ const PokemonFamily = (props: Props) => {
           <FlexStyle flexWidth="100%" alignItems='center' justifyContent='center'>
          
             {familyMembers.map((member) => (
-              <PokemonPreview
+            <Suspense fallback={<div>...</div>}>
+                <PokemonPreview
                 name={member!.name!}
                 key={`${member!.name!}${PreviewArrayId}`}
                 locale={locale}
               />
+            </Suspense>
             ))}
           </FlexStyle>
           </FlipAnimation>

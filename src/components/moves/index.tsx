@@ -10,8 +10,6 @@ import PokemonInfoStyle from '../../styles/PokemonInfoStyle';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
 import { GridStyle } from '../../styles/GridStyle';
 import { FadeAnimation } from '../../styles/Animations';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import { getProperty } from '../../utils/objectUtils';
 interface Props {}
 interface MoveProps {
   locale: string;
@@ -23,8 +21,6 @@ const Move = (props: MoveProps) => {
   const [localName, setLocalName] = useState('');
   const [typeName, setTypeName] = useState('normal');
   
-  const [storedMoves, setStoredMoves] = useLocalStorage('moves', {});
-  const isStored=getProperty(storedMoves,name)!==null
 
   
   useEffect(() => {
@@ -37,26 +33,18 @@ const Move = (props: MoveProps) => {
      if(isMounted &&correctFetch(moveDetails)){
     //  console.log('moviemientos grabados antes de grabar',name)
    //   console.log(storedMoves)
-      setStoredMoves({...storedMoves,[name]:moveDetails })
       setLocalName(lName!);
       setTypeName(moveTypeName!);
 
      }
     };
-    if(isStored){
-       const moveDetails=getProperty(storedMoves,name)
-       const moveTypeName = moveDetails.type.name;
-       const lName = localizeApiresponse(moveDetails.names, locale, 'name')
-       setLocalName(lName!);
-       setTypeName(moveTypeName!);
-    }else{
+  
       fetchMoveDetails();
       
-    }
     return()=>{isMounted=false;
      }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name,url,isStored,storedMoves,locale]);
+  }, [name,url,locale]);
  
   
 
