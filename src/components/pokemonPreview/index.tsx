@@ -36,7 +36,7 @@ interface CardProps {
   pokemonTypes: TypesEntity[];
 }
 
-const SuccessFulPreviewCard = (props: CardProps) => {
+const SuccessFulPreviewCard:React.FC<CardProps> = (props) => {
   const { id, sprites, locale, localName, pokemonTypes } = props;
   return (
     <LinkStyle to={`/pokemon/${id}`}  >
@@ -53,7 +53,7 @@ const SuccessFulPreviewCard = (props: CardProps) => {
         mediaHl="18rem"
         mediaWxl="20rem"
         mediaHxl="35rem"
-        fontSize="6.5px"
+        fontSize="7px"
         fontSm="9px"
         fontSl="12px"
         fontSxl="20px"
@@ -92,7 +92,7 @@ const SuccessFulPreviewCard = (props: CardProps) => {
     </LinkStyle>
   );
 };
-const LoadingPreviewCard = () => (
+const LoadingPreviewCard:React.FC = () => (
   <PreviewCardStyle
   flexWidth="80px"
   flexHeight="170px"
@@ -113,7 +113,7 @@ const LoadingPreviewCard = () => (
     <ColumnFlexStyle flexWidth='100%' flexPadding='1%'><Loading/></ColumnFlexStyle>
   </PreviewCardStyle>
 );
-const ErrorPreviewCard = () => (
+const ErrorPreviewCard:React.FC = () => (
   <PreviewCardStyle
   flexWidth="80px"
   flexHeight="170px"
@@ -133,7 +133,7 @@ const ErrorPreviewCard = () => (
     <ColumnFlexStyle>Preview error</ColumnFlexStyle>
   </PreviewCardStyle>
 );
-const PokemonPreview = (props: Props) => {
+const PokemonPreview:React.FC<Props> = (props) => {
   const { name, locale } = props;
  const [loading,setLoading]=useState(true)
   const [preview, setPreview] = useState({} as PokemonPreviewDetailsInterface);

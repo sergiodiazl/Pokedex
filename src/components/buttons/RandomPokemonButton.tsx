@@ -7,11 +7,8 @@ import { localizeAppTexts } from '../../locale/localizeAppTexts';
 import ResponsiveImg from '../../styles/ResponsiveImg';
 import Ditto from'../../assets/img/icons/ditto.gif'
 
-interface Props {
-    
-}
 
-const RandomPokemonButton = (props: Props) => {
+const RandomPokemonButton:React.FC = () => {
     const randomUrl=(maxNumber:number)=>{
         const randomNumber=Math.floor(Math.random() * (maxNumber - 1) + 1); 
         const newUrl= `/pokemon/${randomNumber}`

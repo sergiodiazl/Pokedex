@@ -6,8 +6,8 @@ import { AppContextConsumer } from '../../contexts/appContext';
 import Navigation from '../../components/navigation';
 
 import { MainContentStyle } from '../../styles/LayoutStyle';
-interface Props {}
-const Main = (props: Props) => {
+
+const Main:React.FC = () => {
   const { page: pageParam } = useParams();
   const currentPage = parseInt(pageParam);
   return (

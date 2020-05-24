@@ -6,11 +6,9 @@ import notFoundImg from '../../assets/img/notFound.gif'
 import ResponsiveImg from '../../styles/ResponsiveImg'
 import RandomPokemonButton from '../../components/buttons/RandomPokemonButton'
 import {Fade} from 'react-awesome-reveal'
-interface Props {
-    
-}
 
-const NotFound = (props: Props) => {
+
+const NotFound:React.FC = () => {
     return (
        
             <Fade>

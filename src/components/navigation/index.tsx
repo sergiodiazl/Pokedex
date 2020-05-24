@@ -9,7 +9,7 @@ interface Props {
   maxPlace: number;
 }
 
-const Navigation = (props: Props) => {
+const Navigation:React.FC<Props> = (props) => {
   const { current, maxPlace, place } = props;
   const createUrl = (destination: number) => {
     const newUrl = `${place}${destination}`;

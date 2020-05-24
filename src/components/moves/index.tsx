@@ -15,7 +15,7 @@ interface MoveProps {
   locale: string;
   move: NamedEntity;
 }
-const Move = (props: MoveProps) => {
+const Move:React.FC<MoveProps> = (props) => {
   const { move, locale } = props;
   const {  name,url } = move;
   const [localName, setLocalName] = useState('');
@@ -31,8 +31,6 @@ const Move = (props: MoveProps) => {
       const moveTypeName = moveDetails.type.name;
       const lName = localizeApiresponse(moveDetails.names, locale, 'name');
      if(isMounted &&correctFetch(moveDetails)){
-    //  console.log('moviemientos grabados antes de grabar',name)
-   //   console.log(storedMoves)
       setLocalName(lName!);
       setTypeName(moveTypeName!);
 

@@ -8,12 +8,9 @@ import MoonIcon from '../../assets/img/icons/moon.png'
 import { localizeAppTexts } from '../../locale/localizeAppTexts'
 import ResponsiveImg from '../../styles/ResponsiveImg'
 import useLocalStorage from '../../hooks/useLocalStorage'
-interface Props {
-    
-}
 
 
-const DarkModebutton = (props: Props) => {
+const DarkModebutton:React.FC = () => {
       
     const[storedLightMode,setStoredLightMode]=useLocalStorage('lightMode',true)
    

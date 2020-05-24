@@ -14,7 +14,7 @@ interface BasicPokemonInfo {
   url: string;
 }
 
-const PokemonList = (props: Props) => {
+const PokemonList:React.FC<Props> = (props) => {
   document.title = 'Pokemon';
   const [pokemonList, setPokemonList] = useState([] as Array<BasicPokemonInfo>);
   const { page, maxPokemon } = props;

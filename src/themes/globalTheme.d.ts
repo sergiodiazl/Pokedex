@@ -5,9 +5,7 @@ declare module 'styled-components' {
 
   export interface DefaultTheme {
     dark:boolean,
-    toggleBorder: string,
   gradient: string,
-  gradientReverse:string,
     colors: {
       body:string
       card:string
@@ -17,9 +15,8 @@ declare module 'styled-components' {
       mainShadow:string
       secondaryShadow:string
       typedItemShadow:string
-      navButton:string
-      navButtonDisabled:string
-      backButton:string
+      
+   
     }
   }
 }

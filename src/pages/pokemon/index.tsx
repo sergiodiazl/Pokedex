@@ -3,8 +3,7 @@ import PokemonInfo from '../../components/pokemonInfo';
 import { useParams, Redirect } from 'react-router-dom';
 import { AppContextConsumer } from '../../contexts/appContext';
 
-interface Props {}
-const Pokemon = (props: Props) => {
+const Pokemon:React.FC = () => {
   const { name } = useParams();
 
   return (

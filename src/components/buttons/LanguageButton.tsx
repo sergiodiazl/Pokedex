@@ -15,14 +15,12 @@ const locales = [
     value: 'ja',
   },
 ];
-interface Props {}
-interface LocaleOptionsProps {}
 interface LocaleOptionProp {
   setLocale: Function;
 
   locale: { name: string; value: string };
 }
-const LocaleOptionsButton = (props: LocaleOptionProp) => {
+const LocaleOptionsButton :React.FC<LocaleOptionProp>= (props: LocaleOptionProp) => {
   const { locale, setLocale } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,7 +36,7 @@ const LocaleOptionsButton = (props: LocaleOptionProp) => {
     </LanguageButtonStyle>
   );
 };
-const LocaleOptionsButtons = (props: LocaleOptionsProps) => {
+const LocaleOptionsButtons:React.FC = () => {
   return (
     <AppContextConsumer>
       {(context) => {
@@ -54,7 +52,7 @@ const LocaleOptionsButtons = (props: LocaleOptionsProps) => {
     </AppContextConsumer>
   );
 };
-const LanguageButton = (props: Props) => {
+const LanguageButton:React.FC = () => {
   return (
     <FlexStyle flexWidth="100%">
       <LocaleOptionsButtons />

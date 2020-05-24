@@ -18,7 +18,7 @@ interface Props {
   family: EvolutionChain;
 }
 
-const PokemonFamily = (props: Props) => {
+const PokemonFamily:React.FC<Props> = (props) => {
   const { family, locale } = props;
   const { url } = family;
   const { familyTitle } = localizeAppTexts(locale);

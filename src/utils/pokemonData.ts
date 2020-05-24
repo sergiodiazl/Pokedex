@@ -1,7 +1,6 @@
 import {getProperty} from './objectUtils'
 import axios from 'axios'
 export const correctFetch=(result:object)=>{
-  console.log(result)
     const statusCode=getProperty(result,'status')
   
     return  statusCode!==404

@@ -8,15 +8,14 @@ import { InputStyle } from '../../styles/InputStyle';
 import RandomPokemonButton from './RandomPokemonButton';
 import { localizeAppTexts } from '../../locale/localizeAppTexts';
 
-interface Props {}
 
-const SearchButton = (props: Props) => {
+const SearchButton:React.FC = () => {
   const [searchNumber, setSearchNumber] = useState('');
   const [searchReady, setSearchReady] = useState(false);
   const routerHistory = useHistory();
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
     const newNumber = event.currentTarget.value;
-    console.log(newNumber.length)
+    
     setSearchNumber(newNumber);
   };
   const search = (event: React.FormEvent<HTMLFormElement>) => {

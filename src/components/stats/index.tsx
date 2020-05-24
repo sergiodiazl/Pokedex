@@ -10,12 +10,12 @@ import { localizeAppTexts } from '../../locale/localizeAppTexts';
 import { FadeAnimation } from '../../styles/Animations';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { isEmpty } from '../../utils/objectUtils';
-interface Props {}
+
 interface StatProps {
   locale: string;
   info: StatsEntity;
 }
-const Stat = (props: StatProps) => {
+const Stat :React.FC<StatProps>= (props: StatProps) => {
   const { info, locale } = props;
   const { stat, base_stat } = info;
   const { name, url } = stat;
@@ -55,7 +55,7 @@ const Stat = (props: StatProps) => {
     </FadeAnimation>
   );
 };
-const Stats = (props: Props) => {
+const Stats:React.FC = () => {
   return (
     <PokemonContextConsumer>
       {(context) => {

@@ -15,7 +15,7 @@ interface Props {
   locale: string;
 }
 
-const PokemonSummary = (props: Props) => {
+const PokemonSummary:React.FC<Props> = (props) => {
   const { locale } = props;
   return (
    

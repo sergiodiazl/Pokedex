@@ -36,7 +36,7 @@ interface Props {
   name: string;
 }
 
-const PokemonInfo = (props: Props) => {
+const PokemonInfo :React.FC<Props>= (props) => {
   const { name } = props;
 
   const [preview, setPreview] = useState({} as PokemonPreviewDetailsInterface);

@@ -18,7 +18,7 @@ interface Props {
 interface TypeProps extends NamedEntity {
   locale: string;
 }
-export const PokemonType = (props: TypeProps) => {
+export const PokemonType :React.FC<TypeProps>= (props) => {
   const { name, url, locale} = props;
   const [localTypeName, setLocalTypeName] = useState(name);
   const [storedTypes, setstoredTypes] = useLocalStorage('types', {});
@@ -58,7 +58,7 @@ export const PokemonType = (props: TypeProps) => {
     </TypedItemStyle>
   );
 };
-const PokemonTypes = (props: Props) => {
+const PokemonTypes:React.FC<Props> = (props) => {
   const { pokemonTypes, locale } = props!;
 
  

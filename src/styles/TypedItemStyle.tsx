@@ -43,13 +43,8 @@ const TypedItemStyle=styled(FlexStyle)< {name:string,itemPadding?:string}>`
        
        width:100%
      } 
-    @media (min-width: 400px) {
-        
-        & *{
-       
    
-   } 
-  }
+  
   @media (min-width: 700px) {
     width:${({flexWidth})=>flexWidth!==undefined?flexWidth:'45%'};
   
@@ -64,13 +59,7 @@ const TypedItemStyle=styled(FlexStyle)< {name:string,itemPadding?:string}>`
    
    
   }
-  @media (min-width: 2000px) {
-  
-    
  
-  }
-
-    
     
 `  
 export default TypedItemStyle
