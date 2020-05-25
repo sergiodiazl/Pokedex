@@ -43,9 +43,9 @@ const SuccessFulPreviewCard:React.FC<CardProps> = (props) => {
       <PreviewCardStyle
         hoverAnimation={ShakeAnimation}
         alignItems="flex-start"
-        flexWidth="80px"
+        flexWidth="100px"
         flexHeight="170px"
-        mediaWs="5rem"
+        mediaWs="7rem"
         mediaHs="10rem"
         mediaWm="7rem"
         mediaHm="14rem"
@@ -94,9 +94,9 @@ const SuccessFulPreviewCard:React.FC<CardProps> = (props) => {
 };
 const LoadingPreviewCard:React.FC = () => (
   <PreviewCardStyle
-  flexWidth="80px"
+  flexWidth="100px"
   flexHeight="170px"
-  mediaWs="5rem"
+  mediaWs="7rem"
   mediaHs="10rem"
   mediaWm="7rem"
   mediaHm="14rem"
@@ -115,9 +115,9 @@ const LoadingPreviewCard:React.FC = () => (
 );
 const ErrorPreviewCard:React.FC = () => (
   <PreviewCardStyle
-  flexWidth="80px"
+  flexWidth="100px"
   flexHeight="170px"
-  mediaWs="5rem"
+  mediaWs="7rem"
   mediaHs="10rem"
   mediaWm="7rem"
   mediaHm="14rem"

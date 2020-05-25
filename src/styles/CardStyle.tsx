@@ -11,7 +11,7 @@ const CardStyle = styled(FlexStyle)<{
   background: ${({ theme }) => theme.colors.card};
   padding: ${({ flexPadding }) =>
     flexPadding !== undefined ? flexPadding : '5%'};
-  margin: ${({ center }) => (center ? '0 auto' : '1rem 0.5rem')};
+  margin: ${({ center }) => (center ? '0 auto' : '0.25rem')};
   border: 2px solid #cc8ea259;
   border-radius: 3px;
   box-shadow: ${({ theme }) => `0 4px 8px 0 ${theme.colors.mainShadow}`};
