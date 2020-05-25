@@ -80,7 +80,7 @@ const Moves = (props: Props) => {
              
               <PokemonInfoStyle as="section">
                      <h2>{movesTitle}</h2>
-                     <FadeAnimation direction="left"divWidth='100%'delay={100}duration={500} cascade  triggerOnce>
+                     <FadeAnimation direction="left"divWidth='100%'delay={100}duration={450} cascade  triggerOnce>
                     <GridStyle gridWidth="100%">
                
                      {moves!.map((move) => (

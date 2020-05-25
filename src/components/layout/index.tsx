@@ -71,7 +71,7 @@ const Layout: React.FC<Props> = (props) => {
               {props.children}
             </ColumnFlexStyle>
             <FooterStyle as="footer">
-            <FadeAnimation direction ='top'delay={500}cascade triggerOnce>
+            <FadeAnimation direction ='top'delay={250}cascade triggerOnce>
               <FlexStyle>
              
               <ALinkStyle href={sergioUrl} >
