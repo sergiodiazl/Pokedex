@@ -9,7 +9,7 @@ interface Props {
   locale: string;
 }
 
-const PokemonFlavor = (props: Props) => {
+const PokemonFlavor:React.FC<Props> = (props: Props) => {
   const { locale } = props;
   const{storyTitle}=localizeAppTexts(locale)
   return (

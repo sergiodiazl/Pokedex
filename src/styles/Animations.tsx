@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import {Fade,Flip, Swing,Zoom}from'react-awesome-reveal'
+import {Fade,Flip, Swing,Zoom}from'react-awesome-reveal/'
 
 export const WalkAnimation=keyframes`
    

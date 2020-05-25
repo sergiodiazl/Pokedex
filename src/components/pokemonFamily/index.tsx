@@ -76,10 +76,10 @@ const PokemonFamily:React.FC<Props> = (props) => {
           <FlexStyle flexWidth="100%" alignItems='center' justifyContent='center'>
          
             {familyMembers.map((member) => (
-            <Suspense fallback={<div>...</div>}>
+            <Suspense  key={`${member!.name!}${PreviewArrayId}`} fallback={<div>...</div>}>
                 <PokemonPreview
                 name={member!.name!}
-                key={`${member!.name!}${PreviewArrayId}`}
+               
                 locale={locale}
               />
             </Suspense>

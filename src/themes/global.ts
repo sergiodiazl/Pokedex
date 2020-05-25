@@ -1,9 +1,7 @@
 
 import { createGlobalStyle} from 'styled-components';
 import JackeyWoff from'../assets/fonts/jackey.woff'
-import JackeyWoff2 from'../assets/fonts/jackey.woff2'
 
-import PressStartWoff2 from'../assets/fonts/pressStart.woff2'
 import PressStartWoff from'../assets/fonts/pressStart.woff'
 
 
@@ -57,7 +55,6 @@ html{
   @font-face {
         font-family: 'Jackey';
         src: local('jackey'), local('Jackey'),
-        url(${JackeyWoff2}) format('woff2'),
         url(${JackeyWoff}) format('woff');
         font-weight: 800;
         font-style: normal;
@@ -66,7 +63,6 @@ html{
     @font-face {
         font-family: 'PressStart';
         src: local('pressStart'), local('PressStart'),
-        url(${PressStartWoff2}) format('woff2'),
         url(${PressStartWoff}) format('woff');
         font-weight: 300;
         font-style: normal;
